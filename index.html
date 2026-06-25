@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamizhmaran | Python Full Stack Developer</title>
+
+    <link rel="stylesheet" href="portfolio.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+</head>
+
+<!-- Up arrow -->
+<button id="scrollTopBtn">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<body>
+
+<button class="hamburger" id="hamburger" aria-label="Open menu">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="avatar"><img src="maran.jpeg" alt=""></div>
+        <h2 class="sidebar-name">Tamizhmaran S</h2>
+        <p class="sidebar-role">Python Full Stack Developer</p>
+        <div class="sidebar-socials">
+            <a href="https://www.linkedin.com/in/tamizhmaran-s" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="mailto:tamizhmaran@email.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="tel:+918778980209" title="Call"><i class="fa-solid fa-phone"></i></a>
+            <a href="https://github.com/" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="#home" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#about" class="nav-link"><i class="fa-solid fa-user"></i> About</a>
+        <a href="#skills" class="nav-link"><i class="fa-solid fa-code"></i> Skills</a>
+        <a href="#projects" class="nav-link"><i class="fa-solid fa-diagram-project"></i> Projects</a>
+        <a href="#experience" class="nav-link"><i class="fa-solid fa-briefcase"></i> Experience</a>
+        <a href="#education" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> Education</a>
+        <a href="#contact" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+    </nav>
+    <a href="Tamizhmaran_Resume.pdf" download class="sidebar-cv-btn">
+        <i class="fa-solid fa-download"></i> Download CV
+    </a>
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+</aside>
+
+<div class="overlay" id="overlay"></div>
+
+<main class="main-content">
+
+    <!-- =======================  HOME ===========================-->
+
+    <section id="home" class="section hero-section">
+        <div class="hero-text animate-fade-up">
+
+            <!-- bell -->
+             <div class="bell-main">
+                <input type="checkbox" id="bellToggle" />
+
+             <label for="bellToggle" class="bell" id="bellBtn">
+               🔔
+               <span class="dot"></span>
+             </label>
+             </div>
+
+            <span class="hero-eyebrow">Hello, World 👋</span>
+            <h1>I'm <span class="highlight">Tamizhmaran</span></h1>
+            <h2 class="typing-wrapper"><span id="typing"></span><span class="cursor">|</span></h2>
+            <p class="hero-desc">Passionate Python Full Stack Developer specializing in Django, REST APIs, JavaScript and modern web applications — building clean, scalable products from backend to browser.</p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn-primary">View Projects</a>
+                <a href="#contact" class="btn-secondary">Hire Me</a>
+            </div>
+        </div>
+        <div class="hero-badge animate-fade-left">
+            <div class="badge-ring">
+                <div class="badge-inner">
+                    <span class="badge-num">2.5+</span>
+                    <span class="badge-label">Months<br>Experience</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--========================== ABOUT =====================================-->
+
+    <section id="about" class="section">
+        <div class="section-header animate-fade-up">
+            <span class="section-tag">About Me</span>
+            <h2 class="section-title"><i class="fa-solid fa-user"></i> Who I Am</h2>
+        </div>
+        
+        <div class="about-grid">
+            <div class="about-text animate-fade-up">
+
+                <p>I'm a <strong>Python Full Stack Developer</strong> with hands-on experience in building robust web applications using Django, REST APIs, and modern front-end technologies. I enjoy turning complex problems into clean, user-friendly solutions.</p>
+
+                <p>My stack includes <strong>Python, Django, JavaScript, HTML5, CSS3, React JS, Bootstrap,</strong> and <strong>MySQL</strong>. I'm committed to writing maintainable code and continuously learning new technologies.</p>
+
+                <div class="about-info">
+                    <div class="info-item">
+                        <span class="info-label"><i class="fa-solid fa-location-dot"></i> Location</span>
+                        <span class="info-value">Tamil Nadu, India</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fa-solid fa-language"></i> Languages</span>
+                        <span class="info-value">Tamil, English</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fa-solid fa-circle-check"></i> Available</span>
+                        <span class="info-value">Open to Opportunities</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-stats animate-fade-left">
+                <div class="stat-card">
+                    <span class="stat-num counter" data-target="4">0</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num counter" data-target="9">0</span>
+                    <span class="stat-label">Technologies</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num counter" data-target="100">0</span>
+                    <span class="stat-label">% Commitment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--============================= SKILLS ===========================-->
+
+    <section id="skills" class="section">
+        <div class="section-header animate-fade-up">
+            <span class="section-tag">What I Know</span>
+            <h2 class="section-title"><i class="fa-solid fa-code"></i> Skills & Technologies</h2>
+        </div>
+        <div class="skills-container">
+            <!--========== Backend =======-->
+
+            <div class="skill-group animate-fade-up">
+                <h3 class="skill-group-title"><i class="fa-solid fa-server"></i> Backend</h3>
+
+                <div class="skill-pills">
+
+                    <div class="skill-pill-1"><i class="fa-brands fa-python"></i><span>Python</span><div class="skill-bar"><div class="skill-fill" data-width="90">90%</div></div></div>
+
+                    <div class="skill-pill-2"><i class="devicon-django-plain"></i><span>Django</span><div class="skill-bar"><div class="skill-fill" data-width="85">85%</div></div></div>
+
+                    <div class="skill-pill-3"><i class="fa-solid fa-plug"></i><span>REST APIs</span><div class="skill-bar"><div class="skill-fill" data-width="80">80%</div></div></div>
+
+                    <div class="skill-pill-4"><i class="fa-solid fa-database"></i><span>MySQL</span><div class="skill-bar"><div class="skill-fill" data-width="85">85%</div></div></div>
+                    
+                </div>
+            </div>
+
+            <!--=========== Frontend ==========-->
+
+            <div class="skill-group animate-fade-up">
+                <h3 class="skill-group-title"><i class="fa-solid fa-palette"></i> Frontend</h3>
+
+                <div class="skill-pills">
+
+                    <div class="skill-pill-5"><i class="fa-brands fa-html5"></i><span>HTML5</span><div class="skill-bar"><div class="skill-fill" data-width="95">95%</div></div></div>
+
+                    <div class="skill-pill-6"><i class="fa-brands fa-css3-alt"></i><span>CSS3</span><div class="skill-bar"><div class="skill-fill" data-width="90">90%</div></div></div>
+
+                    <div class="skill-pill-7"><i class="fa-brands fa-js"></i><span>JavaScript</span><div class="skill-bar"><div class="skill-fill" data-width="80">80%</div></div></div>
+
+                    <div class="skill-pill-8"><i class="fa-brands fa-bootstrap"></i><span>Bootstrap</span><div class="skill-bar"><div class="skill-fill" data-width="85">85%</div></div></div>
+
+                    <div class="skill-pill-9"><i class="fa-brands fa-react"></i><span>React</span><div class="skill-bar"><div class="skill-fill" data-width="75">75%</div></div></div>
+                </div>
+
+            </div>
+
+            <!--======== Tools ==========-->
+
+            <div class="skill-group animate-fade-up">
+                <h3 class="skill-group-title"><i class="fa-solid fa-tools"></i> Tools</h3>
+
+                <div class="skill-pills">
+
+                    <div class="skill-pill-10"><i class="fa-brands fa-git-alt"></i><span>Git</span><div class="skill-bar"><div class="skill-fill" data-width="80">80%</div></div></div>
+
+                    <div class="skill-pill-11"><i class="fa-brands fa-github"></i><span>GitHub</span><div class="skill-bar"><div class="skill-fill" data-width="80">80%</div></div></div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--============================== PROJECTS ===============================-->
+
+    <section id="projects" class="section">
+        <div class="section-header animate-fade-up">
+            <span class="section-tag">My Work</span>
+            <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i> Projects</h2>
+        </div>
+        <div class="projects-grid">
+          <div class="project-card animate-fade-up"
+     data-title="CSC CRM System"
+     data-desc="A Customer Relationship Management system developed for managing leads and staff operations. The system includes lead tracking, staff management, status updates, and reporting features."
+     data-tech="Python, Django, HTML, CSS, JavaScript, MySQL, APIs">
+    <div class="project-icon">
+        <i class="fa-solid fa-users"></i>
+    </div>
+    <h3>CSC CRM System</h3>
+    <p>CRM application with lead management, staff modules, and reporting features.</p>
+    <div class="project-tags">
+        <span>Python</span>
+        <span>Django</span>
+        <span>MySQL</span>
+    </div>
+    <button class="project-more">
+        View Details <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</div>
+
+
+<div class="project-card animate-fade-up"
+     data-title="Student Management System"
+     data-desc="A web-based student management application for handling student records, attendance, academic details, and administrative operations efficiently."
+     data-tech="Python, Django, HTML, CSS, JavaScript, MySQL, APIs">
+    <div class="project-icon">
+        <i class="fa-solid fa-graduation-cap"></i>
+    </div>
+    <h3>Student Management System</h3>
+    <p>Student record management system with attendance and academic tracking.</p>
+    <div class="project-tags">
+        <span>Python</span>
+        <span>Django</span>
+        <span>SQLite</span>
+    </div>
+    <button class="project-more">
+        View Details <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</div>
+
+
+<div class="project-card animate-fade-up"
+     data-title="Farmer Portal"
+     data-desc="A digital platform designed for farmers to access agricultural information, crop details, government schemes, and farming-related services."
+     data-tech="Python, Django, HTML, CSS, JavaScript, MySQL,APIs">
+    <div class="project-icon">
+        <i class="fa-solid fa-seedling"></i>
+    </div>
+    <h3>Farmer Portal</h3>
+    <p>Agricultural portal providing crop information and farmer services.</p>
+    <div class="project-tags">
+        <span>Python</span>
+        <span>Django</span>
+        <span>MySQL</span>
+    </div>
+    <button class="project-more">
+        View Details <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</div>
+
+
+<div class="project-card animate-fade-up"
+     data-title="Construction Site Website"
+     data-desc="A responsive construction company website developed to showcase services, projects, company information, quotation requests, and contact details."
+     data-tech="HTML, CSS, JavaScript">
+    <div class="project-icon">
+        <i class="fa-solid fa-building"></i>
+    </div>
+    <h3>Construction Site Website</h3>
+    <p>Responsive construction company website with services, projects, and quote sections.</p>
+    <div class="project-tags">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+    </div>
+    <button class="project-more">
+        View Details <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</div>
+            
+        </div>
+    </section>
+
+    <!--============================== EXPERIENCE =================================-->
+
+    <section id="experience" class="section">
+        <div class="section-header animate-fade-up">
+            <span class="section-tag">Career</span>
+            <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Experience</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item animate-fade-up">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">2026 – Present</span>
+                    <h3>Python Full Stack Developer</h3>
+                    <p class="timeline-company"><i class="fa-solid fa-building"></i> Freelance / Projects</p>
+                    <p>Python Full Stack Developer experienced in designing and developing modern web applications using Python and Django. Proficient in frontend and backend technologies, database management, and responsive web design. Passionate about building efficient, scalable, and user-friendly applications while continuously learning new technologies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--========================= EDUCATION =======================================-->
+
+    <section id="education" class="section">
+        <div class="section-header animate-fade-up">
+            <span class="section-tag">Academic</span>
+            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item animate-fade-up">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">2022 – 2025</span>
+                    <h3>Bachelor of Science</h3>
+                    <p class="timeline-company"><i class="fa-solid fa-university"></i> Annamalai University, Tamil Nadu</p>
+                    <p>Completed B.Sc. Physics with a strong interest in analytical thinking, problem-solving, and technology. Passionate about software development and continuously learning modern web technologies to build innovative digital solutions.</p>
+                </div>
+            </div>
+            <div class="timeline-item animate-fade-up">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">2021 – 2022</span>
+                    <h3>Higher Secondary (HSC)</h3>
+                    <p class="timeline-company"><i class="fa-solid fa-school"></i> Tamil Nadu State Board</p>
+                    <p>Completed Higher Secondary Education with a strong foundation in Mathematics, Science, and analytical thinking skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--============================= CONTACT ===============================-->
+
+    <section id="contact" class="section">
+        <div class="section-header animate-fade-up">
+            <span class="section-tag">Get In Touch</span>
+            <h2 class="section-title"><i class="fa-solid fa-paper-plane"></i> Contact Me</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info animate-fade-up">
+                <p>I'm open to new opportunities, collaborations, and freelance projects. Feel free to reach out!</p>
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div><span class="contact-label">Email</span><span class="contact-val">tamizhmaran0809@email.com</span></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div><span class="contact-label">Phone</span><span class="contact-val">+91 8778980209</span></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div><span class="contact-label">Location</span><span class="contact-val">Tamil Nadu, India</span></div>
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://www.linkedin.com/in/tamizhmaran-s" target="_blank" class="contact-icon linkedin-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <div><span class="contact-label">LinkedIn</span><a href="https://www.linkedin.com/in/tamizhmaran-s" target="_blank" class="contact-val">linkedin.com/in/tamizhmaran-s</a></div>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form animate-fade-left" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Tamizhmaran">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="you@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" placeholder="Hi, I'd like to work with you..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary full-width">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ======================= Available ===========================-->
+
+    <section class="availability-section">
+    <div class="availability-container">
+        <span class="availability-tag">
+            AVAILABLE FOR OPPORTUNITIES
+        </span>
+
+        <h2>
+            Let's Build Amazing <br>
+            Web Applications Together
+        </h2>
+
+        <p>
+            I'm Tamizhmaran, a Python Full Stack Developer specializing in
+            Django, REST APIs, and modern web applications.
+            Currently looking for internships, freelance projects,
+            and full-time opportunities.
+        </p>
+
+        <div class="availability-buttons">
+            <a href="#contact" class="primary-btn">
+                Contact Me
+            </a>
+
+            <a href="Tamizhmaran_Resume.pdf" download class="secondary-btn">
+                Download CV
+            </a>
+        </div>
+    </div>
+</section>
+
+<!--================================ Footer =========================-->
+
+<footer class="footer">
+    <div class="footer-top">
+
+        <div class="footer-brand">
+            <h3>Tamizhmaran</h3>
+            <p>Passionate Python Full Stack Developer focused on building efficient and scalable web applications.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Navigation</h4>
+
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-contact">
+            <h4>Contact</h4>
+
+            <p> <span><i class="fa-solid fa-location-dot"></i></span> Tamil Nadu, India</p>
+            <p> <span><i class="fa-solid fa-phone"></i></span> 8778980209</p>
+            <p> <span><i class="fa-solid fa-envelope"></i></span> tamizhmaran0809@email.com</p>
+        </div>
+
+        <div class="footer-social">
+            <h4>Follow Me</h4>
+
+            <a href="https://www.linkedin.com/in/tamizhmaran-s">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+
+            <a href="https://github.com/">
+                <i class="fa-brands fa-github"></i>
+            </a>
+
+            <a href="mailto:tamizhmaran@email.com">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Tamizhmaran. All Rights Reserved. <br>
+        Built with passion using HTML, CSS & JavaScript
+    </div>
+</footer>
+
+</main>
+
+<!--================================= MODAL ====================================-->
+
+<div class="modal" id="projectModal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-box">
+        <button class="modal-close" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-icon-wrap" id="modalIcon"></div>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+        <div class="modal-tech" id="modalTech"></div>
+    </div>
+</div>
+
+<script src="portfolio.js"></script>
+</body>
+</html>
