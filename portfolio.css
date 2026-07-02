@@ -21,6 +21,7 @@
     --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.15);
     --radius: 14px;
     --transition: 0.35s ease;
+    
 }
 
 /* ================================================
@@ -46,8 +47,10 @@ body.dark {
     box-sizing: border-box;
 }
 
-html {
+
+ html {
     scroll-behavior: smooth;
+    scroll-padding-top: 20px;
     font-size: 16px;
 }
 
@@ -88,6 +91,7 @@ html {
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background: var(--bg);
+    /* background-color: #fdf6f6; */
     color: var(--text);
     transition: background var(--transition), color var(--transition);
     overflow-x: hidden;
@@ -388,69 +392,284 @@ body {
     font-weight: 800;
     line-height: 1.2;
     color: rgb(233, 133, 11);
+    
 }
 
-/* Bell */
-.bell-main{
-    margin-bottom: 20px;
+
+/* DNA background effect — sits behind everything, on all sections */
+#dna-bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
 }
 
-.bell {
-  font-size: 28px;
-  cursor: pointer;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #94a3b8;
-  transition: 0.3s;
+/* full-page canvas sits behind everything */
+#lightCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Hover effect */
-.bell:hover {
-  transform: scale(1.1);
-  color: #fbbf24;
+/* grain film overlay */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
 }
 
-/* Notification dot */
-.dot {
+/* ── scene wrapper ── */
+.scene {
   position: absolute;
-  top: 2px;
-  right: 2px;
-  width: 10px;
-  height: 10px;
-  background: red;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ── rope from top ── */
+.rope {
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(to bottom, #3a3a3a 0%, #666 60%, #888 100%);
+  flex-shrink: 0;
+  margin-top: 0;
+  position: relative;
+  z-index: 12;
+}
+
+/* ── bell wrapper — swings ── */
+.bell-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  position: relative;
+  z-index: 12;
+  transition: filter 0.6s ease;
+  pointer-events: auto;
+}
+
+.bell-on .bell-wrap {
+  animation: swing 2.4s ease-in-out infinite;
+}
+
+@keyframes swing {
+  0%   { transform: rotate(8deg); }
+  50%  { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
+
+/* top crown */
+.bell-crown {
+width: 18px;        
+  height: 8px; 
+  background: radial-gradient(ellipse at 38% 28%, #8a8a8a, #2e2e2e);
+  border-radius: 50% 50% 40% 40%;
+  position: relative; z-index: 3;
+  box-shadow: inset 0 -3px 6px rgba(0,0,0,0.5);
+  
+}
+
+/* main dome */
+.bell-dome {
+  width: 60px;        
+  height: 52px;      
+  border-radius: 30px 30px 0 0;
+  background: radial-gradient(ellipse at 32% 26%,
+    #9a9a9a 0%, #666 28%, #3a3a3a 58%, #1c1c1c 100%);
+  margin-top: -5px;
+  position: relative; z-index: 2;
+  box-shadow:
+    inset -10px -6px 20px rgba(0,0,0,0.65),
+    inset  8px  6px 14px rgba(255,255,255,0.06);
+  overflow: hidden;
+  transition: box-shadow 0.5s ease;
+  
+}
+
+/* highlight sheen */
+.bell-dome::before {
+  content: '';
+  position: absolute;
+  top: 12px; left: 12px;
+  width: 26px; height: 52px;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.16) 0%, transparent 65%);
   border-radius: 50%;
-  box-shadow: 0 0 8px red;
-  animation: pulse 1.5s infinite;
+  transform: rotate(-15deg);
 }
 
-/* Clicked state */
-#bellToggle:checked + .bell {
-  color: #fbbf24;
-  animation: ring 0.8s ease-in-out;
+/* warm light bounce on dome when ON */
+.bell-dome::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(255,190,60,0) 0%, transparent 100%);
+  transition: background 0.6s ease;
 }
 
-/* Hide dot after click */
-#bellToggle:checked + .bell .dot {
-  display: none;
+.bell-on .bell-dome::after {
+  background: linear-gradient(to top, rgba(255,190,60,0.18) 0%, transparent 100%);
 }
 
-/* Ring animation */
-@keyframes ring {
-  0% { transform: rotate(0); }
-  20% { transform: rotate(12deg); }
-  40% { transform: rotate(-12deg); }
-  60% { transform: rotate(8deg); }
-  80% { transform: rotate(-8deg); }
-  100% { transform: rotate(0); }
+.bell-on .bell-dome {
+  background: radial-gradient(ellipse at 32% 26%,
+    #b0a898 0%, #7a7060 28%, #464038 58%, #201e18 100%);
+  box-shadow:
+    inset -10px -6px 20px rgba(0,0,0,0.55),
+    inset  8px  6px 14px rgba(255,255,255,0.08),
+    0 10px 40px rgba(255,185,50,0.25);
 }
 
-/* Dot pulse */
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.3); opacity: 0.6; }
+/* outer rim */
+.bell-rim {
+  width: 70px;         
+  height: 11px;       
+  margin-top: -4px;
+  background: radial-gradient(ellipse at 34% 38%, #aaa, #444 55%, #1a1a1a);
+  border-radius: 50%;
+  position: relative; z-index: 3;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.85);
+  transition: box-shadow 0.5s ease;
+  
 }
+
+.bell-on .bell-rim {
+  box-shadow:
+    0 5px 12px rgba(0,0,0,0.7),
+    0 0 30px 6px rgba(255,190,50,0.35);
+    
+}
+
+/* inner rim */
+.bell-rim2 {
+width: 64px;        
+  height: 5px; 
+  background: radial-gradient(ellipse, #bbb 0%, #555 55%);
+  border-radius: 50%;
+  margin-top: -3px;
+  position: relative; z-index: 4;
+  
+}
+
+/* clapper + light bulb area */
+.clapper-area {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 3px; z-index: 5;
+  width: 32px;       
+  height: 13px; 
+}
+
+.clapper {
+  width: 7px;        
+  height: 7px;         
+  border-width: 1px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 30%, #ccc, #555);
+  border: 2px solid #888;
+  position: relative; z-index: 2;
+  transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+  
+}
+
+.bell-on .clapper {
+  background: radial-gradient(circle at 38% 30%, #fff4b0, #cc9200);
+  border-color: #ffc840;
+  box-shadow:
+    0 0 6px 3px rgba(255,215,60,0.9),
+    0 0 16px 8px rgba(255,180,20,0.5),
+    0 0 30px 15px rgba(255, 72, 0, 0.25);
+    
+}
+
+/* light cone — the key realistic piece, drawn on canvas */
+/* but we also add a CSS cone for the immediate bell area */
+.light-cone-css {
+  position: absolute;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 70px solid transparent;
+  border-right: 70px solid transparent;
+  border-top: 140px solid rgba(255,190,50,0);
+  pointer-events: none;
+  z-index: 1;
+  transition: border-top-color 0.5s ease;
+  filter: blur(18px);
+  
+}
+
+.bell-on .light-cone-css {
+  border-top-color: rgba(255,180,40,0.35);
+}
+
+/* click button */
+.notify-btn {
+  margin-top: 6px;
+  padding: 6px 10px;   
+  font-size: 10px; 
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.815);
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.5s, border-color 0.5s, background 0.5s, box-shadow 0.5s;
+  position: relative; z-index: 20;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.notify-btn:hover{
+    color: darkorange;
+    text-shadow: none;
+}
+.bell-on .notify-btn {
+  color: #ffd060;
+  border-color: rgba(255,210,60,0.5);
+  background: rgba(255,190,40,0.08);
+  box-shadow: 0 0 10px rgba(255,190,40,0.2);
+  
+}
+
+/* floor glow — CSS ellipse below everything */
+.floor-glow {
+  width: 120px;      
+  height: 15px;       
+  margin-top: 16px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255,185,40,0) 0%, transparent 70%);
+  position: relative; z-index: 11;
+  transition: background 0.6s ease;
+}
+
+.bell-on .floor-glow {
+  background: radial-gradient(ellipse,
+    rgba(255,195,50,0.65) 0%,
+    rgba(255,160,20,0.35) 35%,
+    rgba(255,120,0,0.08) 65%,
+    transparent 100%);
+  animation: floorPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes floorPulse {
+  0%, 100% { opacity: 1; transform: scaleX(1); }
+  50%       { opacity: 0.75; transform: scaleX(0.94); }
+}
+
+
 
 /* ================================================
    11. HERO SECTION
@@ -463,6 +682,7 @@ body {
     gap: 40px;
     background: linear-gradient(135deg, var(--card) 60%, rgba(37, 99, 235, 0.05));
     border-bottom: 2px solid var(--border);
+    padding-top: 180px;
 }
 
 .hero-text {
@@ -479,11 +699,20 @@ body {
 }
 
 .hero-text h1 {
-    font-size: 3.2rem;
     font-weight: 900;
-    line-height: 1.1;
     margin-bottom: 12px;
     color: var(--text);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    line-height: 1.1;
+    font-family: 'Cormorant Garamond', serif;
+
+    /* font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--deep-mauve);
+    opacity: 0;
+    animation: fadeUp .9s ease .5s forwards; */
 }
 
 .highlight {
@@ -1787,6 +2016,3 @@ a.contact-val:hover {
         transition-duration: 0.01ms !important;
     }
 }
-
-
-
