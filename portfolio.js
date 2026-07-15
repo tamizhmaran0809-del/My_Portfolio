@@ -398,7 +398,8 @@ function render() {
 render();
 
 
-// Effects
+//  DNA background effect script 
+
 
 (function () {
   const canvas = document.getElementById('dna-bg-canvas');

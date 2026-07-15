@@ -1357,7 +1357,7 @@ width: 64px;
 
 .timeline-company {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: rgb(255, 123, 0);
     font-weight: 600;
     margin-bottom: 10px;
     display: flex;
@@ -1373,6 +1373,34 @@ width: 64px;
     font-size: 0.88rem;
     color: var(--text-muted);
     line-height: 1.7;
+}
+
+.experience-desc{
+    color: var(--text-muted);
+    font-size: .96rem;
+    line-height: 1.9;
+    transition: .35s ease;
+}
+
+.experience-desc strong{
+    color: var(--text);
+    font-weight: 500;
+}
+
+.experience-list{
+    margin-top:15px;
+    padding-left:22px;
+}
+
+.experience-list li{
+    margin-bottom:12px;
+    color:var(--text-muted);
+    line-height:1.8;
+    font-size:0.92rem;
+}
+
+.experience-list li::marker{
+    color:var(--primary);
 }
 
 /* ==========================
