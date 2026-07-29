@@ -1832,3 +1832,18 @@ a.contact-val:hover {
         transition-duration: 0.01ms !important;
     }
 }
+
+
+@media (max-width: 768px) {
+    .scene { position: relative; transform: scale(0.55); margin-bottom: -40px; margin-top: -120px;}
+}
+
+@media (max-width: 400px) {
+    .sidebar { width: 85vw; }
+    
+}
+
+@media (max-width: 400px) {
+    .project-card h3, .certificate-card h3 { font-size: 0.85rem; }
+    
+}
