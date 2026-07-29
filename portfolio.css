@@ -319,6 +319,7 @@ body {
     background: rgba(0, 0, 0, 0.5);
     z-index: 800;
     opacity: 0;
+    
     transition: opacity var(--transition);
 }
 
@@ -332,6 +333,7 @@ body {
 .main-content {
     margin-left: var(--sidebar-w);
     min-height: 100vh;
+    
 }
 
 /* ================================================
@@ -340,6 +342,7 @@ body {
 .section {
     padding: 48px 52px;
     border-bottom: 2px solid var(--border);
+    
 }
 
 .section:last-of-type {
@@ -348,6 +351,7 @@ body {
 
 .section-header {
     margin-bottom: 26px;
+   
 }
 
 .section-tag {
@@ -406,6 +410,7 @@ body {
   align-items: center;
   z-index: 10;
   pointer-events: none;
+  
 }
 
 .rope {
@@ -527,6 +532,7 @@ body {
   margin-top: 3px; z-index: 5;
   width: 32px;
   height: 13px;
+  
 }
 
 .clapper {
@@ -629,7 +635,7 @@ body {
     gap: 40px;
     background: linear-gradient(135deg, var(--card) 60%, rgba(37, 99, 235, 0.05));
     border-bottom: 2px solid var(--border);
-    padding: 110px 52px 60px;
+    padding: 150px 52px 60px;
 }
 
 .hero-text {
