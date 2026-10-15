@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="wt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tamizhmaran | Python Full Stack Developer</title>
 
-    <link rel="stylesheet" href="portfolio.css">
+    <link rel="icon" type="image/jpeg" href="tmlog.png">
+
+    <link rel="stylesheet" href="white_theme.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-
 </head>
 
 <!-- Up arrow -->
@@ -18,99 +19,162 @@
     <i class="fa-solid fa-arrow-up"></i>
 </button>
 
-<body>
+<body data-prefix="wt">
 
 <!-- DNA background effect -->
 <canvas id="dna-bg-canvas"></canvas>
 
-<button class="hamburger" id="hamburger" aria-label="Open menu">
+<button class="wt-hamburger" id="hamburger" aria-label="Open menu">
     <i class="fa-solid fa-bars"></i>
 </button>
 
-<aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <div class="avatar"><img src="maran.jpeg" alt=""></div>
-        <h2 class="sidebar-name">Tamizhmaran S</h2>
-        <p class="sidebar-role">Python Full Stack Developer</p>
-        <div class="sidebar-socials">
+<aside class="wt-sidebar" id="sidebar">
+    <div class="wt-sidebar-header">
+        <div class="wt-avatar"><img src="tmlog.png" alt=""></div>
+        <h2 class="wt-sidebar-name">Tamizhmaran S</h2>
+        <p class="wt-sidebar-role">Python Full Stack Developer</p>
+        <div class="wt-sidebar-socials">
             <a href="https://www.linkedin.com/in/tamizhmaran-s" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
             <a href="mailto:tamizhmaran0809@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
             <a href="tel:+918778980209" title="Call"><i class="fa-solid fa-phone"></i></a>
             <a href="https://github.com/tamizhmaran0809-del" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
         </div>
     </div>
-    <nav class="sidebar-nav">
-        <a href="#home" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="#about" class="nav-link"><i class="fa-solid fa-user"></i> About</a>
-        <a href="#skills" class="nav-link"><i class="fa-solid fa-code"></i> Skills</a>
-        <a href="#projects" class="nav-link"><i class="fa-solid fa-diagram-project"></i> Projects</a>
-        <a href="#experience" class="nav-link"><i class="fa-solid fa-briefcase"></i> Experience</a>
-        <a href="#education" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> Education</a>
-        <a href="#certificates" class="nav-link"><i class="fas fa-medal"></i> Certificates</a>
-        <a href="#contact" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+    <nav class="wt-sidebar-nav">
+        <a href="#home" class="wt-nav-link wt-active"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#about" class="wt-nav-link"><i class="fa-solid fa-user"></i> About</a>
+        <a href="#skills" class="wt-nav-link"><i class="fa-solid fa-code"></i> Skills</a>
+        <a href="#projects" class="wt-nav-link"><i class="fa-solid fa-diagram-project"></i> Projects</a>
+        <a href="#experience" class="wt-nav-link"><i class="fa-solid fa-briefcase"></i> Experience</a>
+        <a href="#education" class="wt-nav-link"><i class="fa-solid fa-graduation-cap"></i> Education</a>
+        <a href="#certificates" class="wt-nav-link"><i class="fas fa-medal"></i> Certificates</a>
+        <a href="#contact" class="wt-nav-link"><i class="fa-solid fa-paper-plane"></i> Contact</a>
     </nav>
-    <a href="Tamizhmaran_Tech_Resume.docx" download class="sidebar-cv-btn">
+    <a href="Tamizhmaran_Tech_Resume.docx" download class="wt-sidebar-cv-btn">
         <i class="fa-solid fa-download"></i> Download CV
     </a>
-    <button class="theme-toggle" id="themeToggle" title="Toggle theme" >
-        <i class="fa-solid fa-moon" id="themeIcon"></i>
+    <button class="wt-theme-toggle" id="themeToggle" title="Switch theme" type="button" data-next="dark_theme.html">
+        <span class="wt-theme-label"><i class="fa-solid fa-sun" id="themeIcon"></i><span id="themeText">Light Mode</span></span>
+        <span class="wt-theme-switch"><span class="wt-theme-knob"></span></span>
     </button>
 </aside>
 
-<div class="overlay" id="overlay"></div>
+<div class="wt-overlay" id="overlay"></div>
 
-<main class="main-content">
+<main class="wt-main-content">
 
     <!-- =======================  HOME ===========================-->
 
-        <section id="home" class="section hero-section">
+        <section id="home" class="wt-section wt-hero-section">
                 
         <!-- light canvas — sits behind everything -->
           <canvas id="lightCanvas"></canvas>
-          <div class="grain"></div>
+          <div class="wt-grain"></div>
           
-          <div class="scene" id="mainScene">
+          <div class="wt-scene" id="mainScene">
           
-            <div class="rope" id="rope"></div>
+            <div class="wt-rope" id="rope"></div>
           
-            <div class="bell-wrap" id="bellWrap">
-              <div class="bell-crown"></div>
-              <div class="bell-dome">
-                <div class="notify-btn" id="notifyBtn" onclick="toggleBell()">Click</div>
+            <div class="wt-bell-wrap" id="bellWrap">
+              <div class="wt-bell-crown"></div>
+              <div class="wt-bell-dome">
+                <div class="wt-notify-btn" id="notifyBtn" onclick="toggleBell()">Click</div>
               </div>
-              <div class="bell-rim"></div>
-              <div class="bell-rim2"></div>
+              <div class="wt-bell-rim"></div>
+              <div class="wt-bell-rim2"></div>
           
-              <div class="clapper-area">
-                <div class="clapper"></div>
-                <div class="light-cone-css" id="cssConе"></div>
+              <div class="wt-clapper-area">
+                <div class="wt-clapper"></div>
               </div>
             </div>
           
             
-            <div class="floor-glow"></div>
+            <div class="wt-floor-glow"></div>
           
           </div>
           
         
 
-        <div class="hero-text animate-fade-up">
+        <div class="wt-hero-text wt-animate-fade-up">
+            <span class="wt-hero-eyebrow"><span>Hello, World</span> 👋...</span>
+            <h1>I'm <span class="wt-highlight">Tamizhmaran</span></h1>
 
+            <h2 class="wt-typing-wrapper">
+                <i class="fa-solid fa-code"></i>
+                <span id="typing">Python Full Stack Developer</span>
+            </h2>
 
-            <span class="hero-eyebrow">Hello, World 👋</span>
-            <h1>I'm <span class="highlight">Tamizhmaran</span></h1>
-            <h2 class="typing-wrapper"><span id="typing"></span><span class="cursor">|</span></h2>
-            <p class="hero-desc">Passionate Python Full Stack Developer specializing in Django, REST APIs, JavaScript and modern web applications — building clean, scalable products from backend to browser.</p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn-primary">View Projects</a>
-                <a href="#contact" class="btn-secondary">Hire Me</a>
+            <p class="wt-hero-desc">
+                Passionate Python Full Stack Developer specializing in Django, REST APIs,
+                JavaScript and modern web applications — building clean, scalable products
+                from backend to browser.
+            </p>
+
+            <div class="wt-hero-btns">
+                <a href="#projects" class="wt-btn-primary">View Projects <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="#contact" class="wt-btn-secondary"><i class="fa-solid fa-user"></i> Hire Me</a>
             </div>
         </div>
-        <div class="hero-badge animate-fade-left">
-            <div class="badge-ring">
-                <div class="badge-inner">
-                    <span class="badge-num">3+</span>
-                    <span class="badge-label">Months<br>Experience</span>
+
+        <div class="wt-hero-visual wt-animate-fade-left" aria-hidden="true">
+
+    <div class="wt-reference-laptop">
+        <img
+            id="laptopReference"
+            src="laptop-light-reference.png"
+            alt=""
+        >
+    </div>
+
+    <div class="wt-floating-tech-icons">
+    
+    <div class="wt-tech-icon wt-html-icon">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="wt-tech-img">
+    </div>
+    
+    <div class="wt-tech-icon wt-css-icon">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="wt-tech-img">
+    </div>
+    
+    <div class="wt-tech-icon wt-js-icon">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="wt-tech-img">
+    </div>
+    
+    <div class="wt-tech-icon wt-django-icon">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" class="wt-tech-img">
+    </div>
+    
+    <div class="wt-tech-icon wt-php-icon">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="wt-tech-img">
+    </div>
+    
+    <div class="wt-tech-icon wt-python-icon">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="wt-tech-img">
+    </div>
+
+</div>
+
+<!-- CSS sparkles -->
+<div class="wt-tech-sparkles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+</div>
+
+        <div class="wt-hero-badge wt-animate-fade-left">
+            <div class="wt-badge-ring">
+                <div class="wt-badge-inner">
+                    <span class="wt-badge-num">6+</span>
+                    <span class="wt-badge-label">Years<br>Experience</span>
                 </div>
             </div>
         </div>
@@ -118,46 +182,46 @@
 
     <!--========================== ABOUT =====================================-->
 
-    <section id="about" class="section">
-        <div class="section-header animate-fade-up">
-            <span class="section-tag">About Me</span>
-            <h2 class="section-title"><i class="fa-solid fa-user"></i> Who I Am</h2>
+    <section id="about" class="wt-section">
+        <div class="wt-section-header wt-animate-fade-up">
+            <span class="wt-section-tag">About Me</span>
+            <h2 class="wt-section-title"><i class="fa-solid fa-user"></i> Who I Am</h2>
         </div>
         
-        <div class="about-grid">
-            <div class="about-text animate-fade-up">
+        <div class="wt-about-grid">
+            <div class="wt-about-text wt-animate-fade-up">
 
                 <p>I'm a <strong>Python Full Stack Developer</strong> with hands-on experience in building robust web applications using Django, REST APIs, and modern front-end technologies. I enjoy turning complex problems into clean, user-friendly solutions.</p>
 
                 <p>My stack includes <strong>Python, Django, JavaScript, HTML5, CSS3, React JS, Bootstrap,</strong> and <strong>MySQL</strong>. I'm committed to writing maintainable code and continuously learning new technologies.</p>
 
-                <div class="about-info">
-                    <div class="info-item">
-                        <span class="info-label"><i class="fa-solid fa-location-dot"></i> Location</span>
-                        <span class="info-value">Tamil Nadu, India</span>
+                <div class="wt-about-info">
+                    <div class="wt-info-item">
+                        <span class="wt-info-label"><i class="fa-solid fa-location-dot"></i> Location</span>
+                        <a class="wt-info-value wt-info-link" href="https://maps.google.com/?q=Chennai,Tamil+Nadu,India" target="_blank">Tamil Nadu, India</a>
                     </div>
-                    <div class="info-item">
-                        <span class="info-label"><i class="fa-solid fa-language"></i> Languages</span>
-                        <span class="info-value">Tamil, English</span>
+                    <div class="wt-info-item">
+                        <span class="wt-info-label"><i class="fa-solid fa-language"></i> Languages</span>
+                        <span class="wt-info-value">Tamil, English</span>
                     </div>
-                    <div class="info-item">
-                        <span class="info-label"><i class="fa-solid fa-circle-check"></i> Available</span>
-                        <span class="info-value">Open to Opportunities</span>
+                    <div class="wt-info-item">
+                        <span class="wt-info-label"><i class="fa-solid fa-circle-check"></i> Available</span>
+                        <span class="wt-info-value">Open to Opportunities</span>
                     </div>
                 </div>
             </div>
-            <div class="about-stats animate-fade-left">
-                <div class="stat-card">
-                    <span class="stat-num counter" data-target="9">0</span>
-                    <span class="stat-label">Projects Completed</span>
+            <div class="wt-about-stats wt-animate-fade-left">
+                <div class="wt-stat-card">
+                    <span class="wt-stat-num"><span class="counter" data-target="10">10</span><span class="wt-stat-suffix">+</span></span>
+                    <span class="wt-stat-label">Projects Completed</span>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-num counter" data-target="9">0</span>
-                    <span class="stat-label">Technologies</span>
+                <div class="wt-stat-card">
+                    <span class="wt-stat-num"><span class="counter" data-target="10">10</span><span class="wt-stat-suffix">+</span></span>
+                    <span class="wt-stat-label">Technologies</span>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-num counter" data-target="100">0</span>
-                    <span class="stat-label">% Commitment</span>
+                <div class="wt-stat-card">
+                    <span class="wt-stat-num"><span class="counter" data-target="100">100</span><span class="wt-stat-suffix">%</span></span>
+                    <span class="wt-stat-label">Commitment</span>
                 </div>
             </div>
         </div>
@@ -165,60 +229,62 @@
 
     <!--============================= SKILLS ===========================-->
 
-    <section id="skills" class="section">
-        <div class="section-header animate-fade-up">
-            <span class="section-tag">What I Know</span>
-            <h2 class="section-title"><i class="fa-solid fa-code"></i> Skills & Technologies</h2>
+    <section id="skills" class="wt-section">
+        <div class="wt-section-header wt-animate-fade-up">
+            <span class="wt-section-tag">What I Know</span>
+            <h2 class="wt-section-title"><i class="fa-solid fa-code"></i> Skills & Technologies</h2>
         </div>
-        <div class="skills-container">
+        <div class="wt-skills-container">
             <!--========== Backend =======-->
 
-            <div class="skill-group animate-fade-up">
-                <h3 class="skill-group-title"><i class="fa-solid fa-server"></i> Backend</h3>
+            <div class="wt-skill-group wt-animate-fade-up">
+                <h3 class="wt-skill-group-title"><i class="fa-solid fa-server"></i> Backend</h3>
 
-                <div class="skill-pills">
+                <div class="wt-skill-pills">
 
-                    <div class="skill-pill-1"><i class="fa-brands fa-python"></i><span>Python</span><div class="skill-bar"><div class="skill-fill" data-width="90">90%</div></div></div>
+                    <div class="wt-skill-pill-1"><i class="fa-brands fa-python"></i><span>Python</span><div class="wt-skill-bar"><div class="wt-skill-fill" data-width="90">90%</div></div></div>
 
-                    <div class="skill-pill-2"><i class="devicon-django-plain"></i><span>Django</span><div class="skill-bar"><div class="skill-fill" data-width="85">85%</div></div></div>
+                    <div class="wt-skill-pill-2"><i class="devicon-django-plain"></i><span>Django</span><div class="wt-skill-bar"><div class="wt-skill-fill" data-width="85">85%</div></div></div>
 
-                    <div class="skill-pill-3"><i class="fa-solid fa-plug"></i><span>REST APIs</span><div class="skill-bar"><div class="skill-fill" data-width="80">80%</div></div></div>
+                    <div class="wt-skill-pill-3"><i class="fa-solid fa-plug"></i><span>REST APIs</span><div class="wt-skill-bar"><div class="wt-skill-fill" data-width="80">80%</div></div></div>
 
-                    <div class="skill-pill-4"><i class="fa-solid fa-database"></i><span>MySQL</span><div class="skill-bar"><div class="skill-fill" data-width="85">85%</div></div></div>
+                    <div class="wt-skill-pill-4"><i class="fa-solid fa-database"></i><span>MySQL</span><div class="wt-skill-bar"><div class="wt-skill-fill" data-width="85">85%</div></div></div>
+
+                    <div class="wt-skill-pill-4"><i class="fa-brands fa-php"></i><span>PHP</span><div class="wt-skill-bar"><div class="wt-skill-fill" data-width="80">80%</div></div></div>
                     
                 </div>
             </div>
 
             <!--=========== Frontend ==========-->
 
-            <div class="skill-group animate-fade-up">
-                <h3 class="skill-group-title"><i class="fa-solid fa-palette"></i> Frontend</h3>
+            <div class="wt-skill-group wt-animate-fade-up">
+                <h3 class="wt-skill-group-title"><i class="fa-solid fa-palette"></i> Frontend</h3>
 
-                <div class="skill-pills">
+                <div class="wt-skill-pills">
 
-                    <div class="skill-pill-5"><i class="fa-brands fa-html5"></i><span>HTML5</span><div class="skill-bar"><div class="skill-fill" data-width="95">95%</div></div></div>
+                    <div class="wt-skill-pill-5"><i class="fa-brands fa-html5"></i><span>HTML5</span><div class="wt-skill-bar"><div class="wt-skill-fill" data-width="95">95%</div></div></div>
 
-                    <div class="skill-pill-6"><i class="fa-brands fa-css3-alt"></i><span>CSS3</span><div class="skill-bar"><div class="skill-fill" data-width="90">90%</div></div></div>
+                    <div class="wt-skill-pill-6"><i class="fa-brands fa-css3-alt"></i><span>CSS3</span><div class="wt-skill-bar"><div class="wt-skill-fill" data-width="90">90%</div></div></div>
 
-                    <div class="skill-pill-7"><i class="fa-brands fa-js"></i><span>JavaScript</span><div class="skill-bar"><div class="skill-fill" data-width="80">80%</div></div></div>
+                    <div class="wt-skill-pill-7"><i class="fa-brands fa-js"></i><span>JavaScript</span><div class="wt-skill-bar"><div class="wt-skill-fill" data-width="80">80%</div></div></div>
 
-                    <div class="skill-pill-8"><i class="fa-brands fa-bootstrap"></i><span>Bootstrap</span><div class="skill-bar"><div class="skill-fill" data-width="85">85%</div></div></div>
+                    <div class="wt-skill-pill-8"><i class="fa-brands fa-bootstrap"></i><span>Bootstrap</span><div class="wt-skill-bar"><div class="wt-skill-fill" data-width="85">85%</div></div></div>
 
-                    <div class="skill-pill-9"><i class="fa-brands fa-react"></i><span>React</span><div class="skill-bar"><div class="skill-fill" data-width="75">75%</div></div></div>
+                    <div class="wt-skill-pill-9"><i class="fa-brands fa-react"></i><span>React</span><div class="wt-skill-bar"><div class="wt-skill-fill" data-width="75">75%</div></div></div>
                 </div>
 
             </div>
 
             <!--======== Tools ==========-->
 
-            <div class="skill-group animate-fade-up">
-                <h3 class="skill-group-title"><i class="fa-solid fa-tools"></i> Tools</h3>
+            <div class="wt-skill-group wt-animate-fade-up">
+                <h3 class="wt-skill-group-title"><i class="fa-solid fa-tools"></i> Tools</h3>
 
-                <div class="skill-pills">
+                <div class="wt-skill-pills">
 
-                    <div class="skill-pill-10"><i class="fa-brands fa-git-alt"></i><span>Git</span><div class="skill-bar"><div class="skill-fill" data-width="80">80%</div></div></div>
+                    <div class="wt-skill-pill-10"><i class="fa-brands fa-git-alt"></i><span>Git</span><div class="wt-skill-bar"><div class="wt-skill-fill" data-width="80">80%</div></div></div>
 
-                    <div class="skill-pill-11"><i class="fa-brands fa-github"></i><span>GitHub</span><div class="skill-bar"><div class="skill-fill" data-width="80">80%</div></div></div>
+                    <div class="wt-skill-pill-11"><i class="fa-brands fa-github"></i><span>GitHub</span><div class="wt-skill-bar"><div class="wt-skill-fill" data-width="80">80%</div></div></div>
 
                 </div>
             </div>
@@ -227,184 +293,184 @@
 
     <!--============================== PROJECTS ===============================-->
 
-    <section id="projects" class="section">
-        <div class="section-header animate-fade-up">
-            <span class="section-tag">My Work</span>
-            <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i> Projects</h2>
+    <section id="projects" class="wt-section">
+        <div class="wt-section-header wt-animate-fade-up">
+            <span class="wt-section-tag">My Work</span>
+            <h2 class="wt-section-title"><i class="fa-solid fa-diagram-project"></i> Projects</h2>
         </div>
-        <div class="projects-grid">
-          <div class="project-card animate-fade-up"
+        <div class="wt-projects-grid">
+          <div class="wt-project-card wt-animate-fade-up"
      data-title="CSC CRM System"
      data-desc="A Customer Relationship Management system developed for managing leads and staff operations. The system includes lead tracking, staff management, status updates, and reporting features."
      data-tech="Python, Django, HTML, CSS, JavaScript, MySQL, APIs">
-    <div class="project-icon">
+    <div class="wt-project-icon">
         <i class="fa-solid fa-users"></i>
     </div>
     <h3>CSC CRM System</h3>
     <p>CRM application with lead management, staff modules, and reporting features.</p>
-    <div class="project-tags">
+    <div class="wt-project-tags">
         <span>Python</span>
         <span>Django</span>
         <span>MySQL</span>
     </div>
-    <button class="project-more">
+    <button class="wt-project-more">
         View Details <i class="fa-solid fa-arrow-right"></i>
     </button>
 </div>
 
 
-<div class="project-card animate-fade-up"
+<div class="wt-project-card wt-animate-fade-up"
      data-title="Student Management System"
      data-desc="A web-based student management application for handling student records, attendance, academic details, and administrative operations efficiently."
      data-tech="Python, Django, HTML, CSS, JavaScript, MySQL, APIs">
-    <div class="project-icon">
+    <div class="wt-project-icon">
         <i class="fa-solid fa-graduation-cap"></i>
     </div>
     <h3>Student Management System</h3>
     <p>Student record management system with attendance and academic tracking.</p>
-    <div class="project-tags">
+    <div class="wt-project-tags">
         <span>Python</span>
         <span>Django</span>
         <span>SQLite</span>
     </div>
-    <button class="project-more">
+    <button class="wt-project-more">
         View Details <i class="fa-solid fa-arrow-right"></i>
     </button>
 </div>
 
 
-<div class="project-card animate-fade-up"
+<div class="wt-project-card wt-animate-fade-up"
      data-title="Farmer Portal"
      data-desc="A digital platform designed for farmers to access agricultural information, crop details, government schemes, and farming-related services."
      data-tech="Python, Django, HTML, CSS, JavaScript, MySQL,APIs">
-    <div class="project-icon">
+    <div class="wt-project-icon">
         <i class="fa-solid fa-seedling"></i>
     </div>
     <h3>Farmer Portal</h3>
     <p>Agricultural portal providing crop information and farmer services.</p>
-    <div class="project-tags">
+    <div class="wt-project-tags">
         <span>Python</span>
         <span>Django</span>
         <span>MySQL</span>
     </div>
-    <button class="project-more">
+    <button class="wt-project-more">
         View Details <i class="fa-solid fa-arrow-right"></i>
     </button>
 </div>
 
 
-<div class="project-card animate-fade-up"
+<div class="wt-project-card wt-animate-fade-up"
      data-title="Construction Site Website"
      data-desc="A responsive construction company website developed to showcase services, projects, company information, quotation requests, and contact details."
      data-tech="HTML, CSS, JavaScript">
-    <div class="project-icon">
+    <div class="wt-project-icon">
         <i class="fa-solid fa-building"></i>
     </div>
     <h3>Construction Site Website</h3>
     <p>Responsive construction company website with services, projects, and quote sections.</p>
-    <div class="project-tags">
+    <div class="wt-project-tags">
         <span>HTML</span>
         <span>CSS</span>
         <span>JavaScript</span>
     </div>
-    <button class="project-more">
+    <button class="wt-project-more">
         View Details <i class="fa-solid fa-arrow-right"></i>
     </button>
 </div>
 
-<div class="project-card animate-fade-up"
+<div class="wt-project-card wt-animate-fade-up"
      data-title="Role-Based Task Tracker"
      data-desc="A task management system with role-based access control, allowing staff and admins to create, assign, and track tasks with status updates and workflow management."
      data-tech="Python, Django, HTML, CSS, JavaScript, MySQL, APIs">
-    <div class="project-icon">
+    <div class="wt-project-icon">
         <i class="fa-solid fa-list-check"></i>
     </div>
     <h3>Role-Based Task Tracker</h3>
     <p>Task tracking application with role-based access and workflow management.</p>
-    <div class="project-tags">
+    <div class="wt-project-tags">
         <span>Python</span>
         <span>Django</span>
         <span>MySQL</span>
     </div>
-    <button class="project-more">
+    <button class="wt-project-more">
         View Details <i class="fa-solid fa-arrow-right"></i>
     </button>
 </div>
 
 
-<div class="project-card animate-fade-up"
+<div class="wt-project-card wt-animate-fade-up"
      data-title="Company Website"
      data-desc="A real company website built with About, Contact, and Inspiration pages, showcasing company information, mission, and ways to get in touch."
      data-tech="Python, Django, HTML, CSS, JavaScript">
-    <div class="project-icon">
+    <div class="wt-project-icon">
         <i class="fa-solid fa-building-columns"></i>
     </div>
     <h3>Company Website</h3>
     <p>About, Contact, and Inspiration pages built for a real company site.</p>
-    <div class="project-tags">
+    <div class="wt-project-tags">
         <span>Python</span>
         <span>Django</span>
         <span>HTML/CSS</span>
     </div>
-    <button class="project-more">
+    <button class="wt-project-more">
         View Details <i class="fa-solid fa-arrow-right"></i>
     </button>
 </div>
 
 
-<div class="project-card animate-fade-up"
+<div class="wt-project-card wt-animate-fade-up"
      data-title="Menswear Shop"
      data-desc="A front-end e-commerce style website for a men's clothing store, featuring product listings, categories, and a shopping cart interface."
      data-tech="HTML, CSS, JavaScript, Bootstrap">
-    <div class="project-icon">
+    <div class="wt-project-icon">
         <i class="fa-solid fa-shirt"></i>
     </div>
     <h3>Menswear Shop</h3>
     <p>E-commerce style front-end with product listings and cart UI.</p>
-    <div class="project-tags">
+    <div class="wt-project-tags">
         <span>HTML</span>
         <span>CSS</span>
         <span>Bootstrap</span>
     </div>
-    <button class="project-more">
+    <button class="wt-project-more">
         View Details <i class="fa-solid fa-arrow-right"></i>
     </button>
 </div>
 
 
-<div class="project-card animate-fade-up"
+<div class="wt-project-card wt-animate-fade-up"
      data-title="Demo Portfolio Websites"
      data-desc="A set of responsive portfolio site demos built to showcase different UI/UX layouts and design styles for personal and professional branding."
      data-tech="HTML, CSS, JavaScript">
-    <div class="project-icon">
+    <div class="wt-project-icon">
         <i class="fa-solid fa-id-card"></i>
     </div>
     <h3>Demo Portfolio Websites</h3>
     <p>Responsive portfolio site demos showcasing UI/UX layouts.</p>
-    <div class="project-tags">
+    <div class="wt-project-tags">
         <span>HTML</span>
         <span>CSS</span>
         <span>JavaScript</span>
     </div>
-    <button class="project-more">
+    <button class="wt-project-more">
         View Details <i class="fa-solid fa-arrow-right"></i>
     </button>
 </div>
 
 
-<div class="project-card animate-fade-up"
+<div class="wt-project-card wt-animate-fade-up"
      data-title="Alarm Clock"
      data-desc="A core Python desktop application that allows users to set alarms with time-based triggers, alerts, and a simple interactive interface."
      data-tech="Python">
-    <div class="project-icon">
+    <div class="wt-project-icon">
         <i class="fa-solid fa-clock"></i>
     </div>
     <h3>Alarm Clock</h3>
     <p>Desktop alarm clock application with time-based triggers and alerts.</p>
-    <div class="project-tags">
+    <div class="wt-project-tags">
         <span>Python</span>
     </div>
-    <button class="project-more">
+    <button class="wt-project-more">
         View Details <i class="fa-solid fa-arrow-right"></i>
     </button>
 </div>
@@ -414,34 +480,34 @@
 
     <!--============================== EXPERIENCE =================================-->
 
-<section id="experience" class="section">
-    <div class="section-header animate-fade-up">
-        <span class="section-tag">Career</span>
-        <h2 class="section-title">
+<section id="experience" class="wt-section">
+    <div class="wt-section-header wt-animate-fade-up">
+        <span class="wt-section-tag">Career</span>
+        <h2 class="wt-section-title">
             <i class="fa-solid fa-briefcase"></i> Experience
         </h2>
     </div>
 
-    <div class="timeline">
-        <div class="timeline-item animate-fade-up">
-            <div class="timeline-dot"></div>
+    <div class="wt-timeline">
+        <div class="wt-timeline-item wt-animate-fade-up">
+            <div class="wt-timeline-dot"></div>
 
-            <div class="timeline-content">
+            <div class="wt-timeline-content">
 
-                <span class="timeline-date">Apr 2026 – Jul 2026</span>
+                <span class="wt-timeline-date">Apr 2026 – Jul 2026</span>
 
                 <h3>Python Full Stack Developer Intern</h3>
 
-                <p class="timeline-company">
+                <p class="wt-timeline-company">
                     <i class="fa-solid fa-building"></i>
                     Errors2Experts (E2E), Tamil Nadu, India
                 </p>
 
-                <p class="experience-desc">
+                <p class="wt-experience-desc">
                      Developed and maintained enterprise web applications using <strong>Python, Django, HTML5, CSS3, JavaScript, Bootstrap, REST APIs, MySQL, SQLite3, Git,</strong> and <strong>GitHub</strong>, contributing to full-stack development, database management, API integration, and software quality.
                 </p>
 
-                <ul class="experience-list">
+                <ul class="wt-experience-list">
                     <li>Developed and enhanced the <strong>CSC CRM</strong> and <strong>Role-Based Task Tracker</strong> applications and etc.</li>
 
                     <li>Built responsive UI, implemented backend features, integrated REST APIs, and managed MySQL & SQLite3 databases.</li>
@@ -458,27 +524,27 @@
 
     <!--========================= EDUCATION =======================================-->
 
-    <section id="education" class="section">
-        <div class="section-header animate-fade-up">
-            <span class="section-tag">Academic</span>
-            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+    <section id="education" class="wt-section">
+        <div class="wt-section-header wt-animate-fade-up">
+            <span class="wt-section-tag">Academic</span>
+            <h2 class="wt-section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
         </div>
-        <div class="timeline">
-            <div class="timeline-item animate-fade-up">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <span class="timeline-date">2022 – 2025</span>
+        <div class="wt-timeline">
+            <div class="wt-timeline-item wt-animate-fade-up">
+                <div class="wt-timeline-dot"></div>
+                <div class="wt-timeline-content">
+                    <span class="wt-timeline-date">2022 – 2025</span>
                     <h3>Bachelor of Science</h3>
-                    <p class="timeline-company"><i class="fa-solid fa-university"></i> Annamalai University, Tamil Nadu,India</p>
+                    <p class="wt-timeline-company"><i class="fa-solid fa-university"></i> Annamalai University, Tamil Nadu,India</p>
                     <p>Completed B.Sc. Physics with a strong interest in analytical thinking, problem-solving, and technology. Passionate about software development and continuously learning modern web technologies to build innovative digital solutions.</p>
                 </div>
             </div>
-            <div class="timeline-item animate-fade-up">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <span class="timeline-date">2021 – 2022</span>
+            <div class="wt-timeline-item wt-animate-fade-up">
+                <div class="wt-timeline-dot"></div>
+                <div class="wt-timeline-content">
+                    <span class="wt-timeline-date">2021 – 2022</span>
                     <h3>Higher Secondary (HSC)</h3>
-                    <p class="timeline-company"><i class="fa-solid fa-school"></i> Tamil Nadu State Board,India</p>
+                    <p class="wt-timeline-company"><i class="fa-solid fa-school"></i> Tamil Nadu State Board,India</p>
                     <p>Completed Higher Secondary Education with a strong foundation in Mathematics, Science, and analytical thinking skills.</p>
                 </div>
             </div>
@@ -487,50 +553,50 @@
      
 <!--============================= certificate ===============================-->
 
-    <section id="certificates" class="section">
-    <div class="section-header animate-fade-up">
-        <span class="section-tag">My Certificates</span>
+    <section id="certificates" class="wt-section">
+    <div class="wt-section-header wt-animate-fade-up">
+        <span class="wt-section-tag">My Certificates</span>
 
-        <h2 class="section-title">
+        <h2 class="wt-section-title">
             <i class="fa-solid fa-medal"></i>
             Certificates
         </h2>
     </div>
 
-    <div class="certificate-grid animate-fade-up">
+    <div class="wt-certificate-grid wt-animate-fade-up">
 
-        <div class="certificate-card animate-fade-up">
-            <i class="fa-solid fa-medal certificate-icon"></i>
+        <div class="wt-certificate-card wt-animate-fade-up">
+            <i class="fa-solid fa-medal wt-certificate-icon"></i>
             <h3>Microsoft — Microsoft Office Essentials</h3>
             <p>Successful completion of Microsoft Office Essentials, conducted by Microsoft under Naan Mudhalvan Program</p>
-            <a href="image2.jpeg" class="certificate-more">
+            <a href="image2.jpeg" class="wt-certificate-more">
                 View Details <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
 
-        <div class="certificate-card animate-fade-up">
-            <i class="fa-solid fa-medal certificate-icon"></i>
+        <div class="wt-certificate-card wt-animate-fade-up">
+            <i class="fa-solid fa-medal wt-certificate-icon"></i>
             <h3>Cambridge — English Language Communication</h3>
             <p>Overview of English Language Communication Assessment & Certification from Cambridge</p>
-            <a href="image1.jpeg" class="certificate-more">
+            <a href="image1.jpeg" class="wt-certificate-more">
                 View Details <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
 
-        <div class="certificate-card animate-fade-up">
-            <i class="fa-solid fa-medal certificate-icon"></i>
+        <div class="wt-certificate-card wt-animate-fade-up">
+            <i class="fa-solid fa-medal wt-certificate-icon"></i>
             <h3>OpenMentor — Data Analytics and Visualization</h3>
             <p>Successful completion of Data Analytics and Visualization, conducted by Open Mentor under Naan Mudhalvan Program</p>
-            <a href="image3.jpeg" class="certificate-more">
+            <a href="image3.jpeg" class="wt-certificate-more">
                 View Details <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
 
-        <div class="certificate-card animate-fade-up">
-            <i class="fa-solid fa-medal certificate-icon"></i>
+        <div class="wt-certificate-card wt-animate-fade-up">
+            <i class="fa-solid fa-medal wt-certificate-icon"></i>
             <h3>Ants Skill Varsity — Advanced Data Analysis and Visualisation</h3>
             <p>Successful completion of Advanced Data Analysis and Visualisation, conducted by Ants Skill Varsity under Naan Mudhalvan Program</p>
-            <a href="image4.jpeg" class="certificate-more">
+            <a href="image4.jpeg" class="wt-certificate-more">
                 View Details <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
@@ -542,69 +608,69 @@
 
     <!--============================= CONTACT ===============================-->
 
-    <section id="contact" class="section">
-        <div class="section-header animate-fade-up">
-            <span class="section-tag">Get In Touch</span>
-            <h2 class="section-title"><i class="fa-solid fa-paper-plane"></i> Contact Me</h2>
+    <section id="contact" class="wt-section">
+        <div class="wt-section-header wt-animate-fade-up">
+            <span class="wt-section-tag">Get In Touch</span>
+            <h2 class="wt-section-title"><i class="fa-solid fa-paper-plane"></i> Contact Me</h2>
         </div>
-        <div class="contact-grid">
-            <div class="contact-info animate-fade-up">
+        <div class="wt-contact-grid">
+            <div class="wt-contact-info wt-animate-fade-up">
                 <p>I'm open to new opportunities, collaborations, and freelance projects. Feel free to reach out!</p>
-                    <div class="contact-items">
+                    <div class="wt-contact-items">
 
     <!-- Email -->
-    <div class="contact-item">
-        <a href="mailto:tamizhmaran0809@gmail.com" class="contact-icon">
+    <div class="wt-contact-item">
+        <a href="mailto:tamizhmaran0809@gmail.com" class="wt-contact-icon">
             <i class="fa-solid fa-envelope"></i>
         </a>
         <div>
-            <span class="contact-label">Email</span>
-            <a href="mailto:tamizhmaran0809@gmail.com" class="contact-val">
+            <span class="wt-contact-label">Email</span>
+            <a href="mailto:tamizhmaran0809@gmail.com" class="wt-contact-val">
                 tamizhmaran0809@gmail.com
             </a>
         </div>
     </div>
 
     <!-- Phone -->
-    <div class="contact-item">
-        <a href="tel:+918778980209" class="contact-icon">
+    <div class="wt-contact-item">
+        <a href="tel:+918778980209" class="wt-contact-icon">
             <i class="fa-solid fa-phone"></i>
         </a>
         <div>
-            <span class="contact-label">Phone</span>
-            <a href="tel:+918778980209" class="contact-val">
+            <span class="wt-contact-label">Phone</span>
+            <a href="tel:+918778980209" class="wt-contact-val">
                 +91 8778980209
             </a>
         </div>
     </div>
 
     <!-- Location -->
-    <div class="contact-item">
-        <a href="https://maps.google.com/?q=Chennai,Tamil+Nadu,India" target="_blank" class="contact-icon">
+    <div class="wt-contact-item">
+        <a href="https://maps.google.com/?q=Chennai,Tamil+Nadu,India" target="_blank" class="wt-contact-icon">
             <i class="fa-solid fa-location-dot"></i>
         </a>
         <div>
-            <span class="contact-label">Location</span>
+            <span class="wt-contact-label">Location</span>
             <a href="https://maps.google.com/?q=Chennai,Tamil+Nadu,India"
                target="_blank"
-               class="contact-val">
+               class="wt-contact-val">
                 📍Chennai, Tamil Nadu, India
             </a>
         </div>
     </div>
 
     <!-- LinkedIn -->
-    <div class="contact-item">
+    <div class="wt-contact-item">
         <a href="https://www.linkedin.com/in/tamizhmaran-s/"
            target="_blank"
-           class="contact-icon linkedin-icon">
+           class="wt-contact-icon linkedin-icon">
             <i class="fa-brands fa-linkedin-in"></i>
         </a>
         <div>
-            <span class="contact-label">LinkedIn</span>
+            <span class="wt-contact-label">LinkedIn</span>
             <a href="https://www.linkedin.com/in/tamizhmaran-s/"
                target="_blank"
-               class="contact-val">
+               class="wt-contact-val">
                 linkedin.com/in/tamizhmaran-s
             </a>
         </div>
@@ -612,17 +678,21 @@
 
 </div>
             </div>
-            <form class="contact-form animate-fade-left"
+            <form class="wt-contact-form wt-animate-fade-left"
+      id="contactForm"
       action="https://formsubmit.co/tamizhmaran0809@gmail.com"
       method="POST">
 
     <!-- Disable CAPTCHA -->
     <input type="hidden" name="_captcha" value="false">
 
-    <!-- Redirect after successful submission -->
-    <input type="hidden" name="_next" value="https://your-portfolio-link.com">
+    <!-- Subject line for the email you receive -->
+    <input type="hidden" name="_subject" value="New message from your portfolio site">
 
-    <div class="form-group">
+    <!-- Redirect after successful submission -->
+    <input type="hidden" name="_next" value="https://your-portfolio-link.com/thank-you.html">
+
+    <div class="wt-form-group">
         <label for="name">Your Name</label>
         <input
             type="text"
@@ -632,7 +702,7 @@
             required>
     </div>
 
-    <div class="form-group">
+    <div class="wt-form-group">
         <label for="email">Email Address</label>
         <input
             type="email"
@@ -642,7 +712,7 @@
             required>
     </div>
 
-    <div class="form-group">
+    <div class="wt-form-group">
         <label for="message">Message</label>
         <textarea
             id="message"
@@ -652,7 +722,7 @@
             required></textarea>
     </div>
 
-    <button type="submit" class="btn-primary full-width">
+    <button type="submit" class="wt-btn-primary wt-full-width">
         Send Message
         <i class="fa-solid fa-paper-plane"></i>
     </button>
@@ -663,9 +733,9 @@
 
     <!-- ======================= Available ===========================-->
 
-    <section class="availability-section">
-    <div class="availability-container">
-        <span class="availability-tag">
+    <section class="wt-availability-section">
+    <div class="wt-availability-container">
+        <span class="wt-availability-tag">
             AVAILABLE FOR OPPORTUNITIES
         </span>
 
@@ -681,12 +751,12 @@
             and full-time opportunities.
         </p>
 
-        <div class="availability-buttons">
-            <a href="#contact" class="primary-btn">
+        <div class="wt-availability-buttons">
+            <a href="#contact" class="wt-primary-btn">
                 Contact Me
             </a>
 
-            <a href="Tamizhmaran_Tech_Resume.docx" download class="secondary-btn">
+            <a href="Tamizhmaran_Tech_Resume.docx" download class="wt-secondary-btn">
                 Download CV
             </a>
         </div>
@@ -695,15 +765,15 @@
 
 <!--================================ Footer =========================-->
 
-<footer class="footer">
-    <div class="footer-top">
+<footer class="wt-footer">
+    <div class="wt-footer-top">
 
-        <div class="footer-brand">
+        <div class="wt-footer-brand">
             <h3>Tamizhmaran</h3>
             <p>Passionate Python Full Stack Developer focused on building efficient and scalable web applications.</p>
         </div>
 
-        <div class="footer-links">
+        <div class="wt-footer-links">
             <h4>Navigation</h4>
 
             <a href="#home">Home</a>
@@ -714,7 +784,7 @@
             <a href="#contact">Contact</a>
         </div>
 
-        <div class="footer-contact">
+        <div class="wt-footer-contact">
             <h4>Contact</h4>
 
             <p> <span><i class="fa-solid fa-location-dot"></i></span> Tamil Nadu, India</p>
@@ -722,7 +792,7 @@
             <p> <span><i class="fa-solid fa-envelope"></i></span> tamizhmaran0809@email.com</p>
         </div>
 
-        <div class="footer-social">
+        <div class="wt-footer-social">
             <h4>Follow Me</h4>
 
             <a href="https://www.linkedin.com/in/tamizhmaran-s">
@@ -740,7 +810,7 @@
 
     </div>
 
-    <div class="footer-bottom">
+    <div class="wt-footer-bottom">
         © 2026 Tamizhmaran <span style="color:#ffb88c;">♥</span>. All Rights Reserved. <br>
         Built with passion using HTML, CSS & JavaScript
     </div>
@@ -750,14 +820,14 @@
 
 <!--================================= MODAL ====================================-->
 
-<div class="modal" id="projectModal">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <div class="modal-box">
-        <button class="modal-close" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
-        <div class="modal-icon-wrap" id="modalIcon"></div>
+<div class="wt-modal" id="projectModal">
+    <div class="wt-modal-backdrop" id="modalBackdrop"></div>
+    <div class="wt-modal-box">
+        <button class="wt-modal-close" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="wt-modal-icon-wrap" id="modalIcon"></div>
         <h2 id="modalTitle"></h2>
         <p id="modalDesc"></p>
-        <div class="modal-tech" id="modalTech"></div>
+        <div class="wt-modal-tech" id="modalTech"></div>
     </div>
 </div>
 

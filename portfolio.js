@@ -1,8 +1,20 @@
 // ================================================
+// THEME PREFIX
+// One shared JS file for both index.html (wt-...) and dark_theme.html (dk-...).
+// Each page declares its own prefix on <body data-prefix="wt|dk">, and every
+// class this file touches is built from that prefix, so the classes stay
+// wt- / dk- specific per page while the JS logic itself is identical.
+// ================================================
+const PFX = document.body.dataset.prefix || 'wt';
+const IS_DARK = PFX === 'dk';
+const cls = (name) => PFX + '-' + name;      // e.g. cls('visible')  -> "wt-visible"
+const sel = (name) => '.' + cls(name);        // e.g. sel('nav-link') -> ".wt-nav-link"
+
+// ================================================
 // TYPING EFFECT
 // ================================================
 const typingEl = document.getElementById('typing');
-const words = ['Python Full Stack Developer', 'Django & REST API Expert', 'Frontend & Backend Developer'];
+const words = ['Python Full Stack Developer'];
 let wIdx = 0, cIdx = 0, deleting = false;
 
 function typeEffect() {
@@ -22,13 +34,13 @@ typeEffect();
 // ================================================
 // SCROLL ANIMATIONS
 // ================================================
-const animEls = document.querySelectorAll('.animate-fade-up, .animate-fade-left');
+const animEls = document.querySelectorAll(sel('animate-fade-up') + ', ' + sel('animate-fade-left'));
 
 const animObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const delay = entry.target.dataset.delay || 0;
-            setTimeout(() => entry.target.classList.add('visible'), delay * 1000);
+            setTimeout(() => entry.target.classList.add(cls('visible')), delay * 1000);
             animObserver.unobserve(entry.target);
         }
     });
@@ -37,7 +49,7 @@ const animObserver = new IntersectionObserver((entries) => {
 animEls.forEach(el => {
     const parent = el.parentElement;
     const siblings = Array.from(parent.children).filter(c =>
-        c.classList.contains('animate-fade-up') || c.classList.contains('animate-fade-left'));
+        c.classList.contains(cls('animate-fade-up')) || c.classList.contains(cls('animate-fade-left')));
     const idx = siblings.indexOf(el);
     if (idx > 0) el.dataset.delay = (idx * 0.12).toFixed(2);
     animObserver.observe(el);
@@ -47,7 +59,7 @@ animEls.forEach(el => {
 // ================================================
 // SKILL BARS
 // ================================================
-const skillFills = document.querySelectorAll('.skill-fill');
+const skillFills = document.querySelectorAll(sel('skill-fill'));
 const skillObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -62,7 +74,7 @@ skillFills.forEach(fill => skillObserver.observe(fill));
 // ================================================
 // COUNTER ANIMATION
 // ================================================
-const counters = document.querySelectorAll('.counter');
+const counters = document.querySelectorAll(sel('counter'));
 const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -87,16 +99,15 @@ counters.forEach(c => counterObserver.observe(c));
 // ================================================
 // ACTIVE NAV
 // ================================================
-
-const sections = document.querySelectorAll('.section');
-const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll(sel('section'));
+const navLinks = document.querySelectorAll(sel('nav-link'));
 
 window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(sec => { if (window.scrollY + 200 >= sec.offsetTop) current = sec.id; });
+    sections.forEach(secEl => { if (window.scrollY + 200 >= secEl.offsetTop) current = secEl.id; });
     navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+        link.classList.remove(cls('active'));
+        if (link.getAttribute('href') === '#' + current) link.classList.add(cls('active'));
     });
 }, { passive: true });
 
@@ -113,38 +124,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 // ================================================
-// DARK MODE  ←  Single source of truth: isOn
-// Bell toggle (toggleBell) and sidebar button both call applyTheme()
-// applyTheme() always keeps isOn in sync so the canvas light matches
+// THEME SWITCH — navigates between index.html (light) and
+// dark_theme.html (dark) instead of toggling a class, since the two
+// themes now live in fully separate HTML/CSS files.
 // ================================================
 const themeToggle = document.getElementById('themeToggle');
-const themeIcon   = document.getElementById('themeIcon');
-const scene       = document.getElementById('mainScene');
 
-// isOn = true  →  dark theme + bell light ON
-// isOn = false →  light theme + bell light OFF
-let isOn = localStorage.getItem('theme') === 'dark';
-
-function applyTheme(dark) {
-    isOn = dark;                                          
-
-    document.body.classList.toggle('dark', dark);
-    themeIcon.className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
-
-    if (scene) scene.classList.toggle('bell-on', dark);  // sync bell visual
+function goToOtherTheme() {
+    const next = themeToggle && themeToggle.dataset.next;
+    if (next) window.location.href = next;
 }
 
-// Boot: apply saved preference
-applyTheme(isOn);
+if (themeToggle) {
+    themeToggle.addEventListener('click', goToOtherTheme);
+}
 
-// Sidebar theme button
-themeToggle.addEventListener('click', () => applyTheme(!isOn));
-
-// Bell click (called via onclick="toggleBell()" in HTML)
+// Bell click also swaps theme (bell's on/off look is baked into the page already)
 function toggleBell() {
-    applyTheme(!isOn);
+    goToOtherTheme();
 }
+
 
 // ================================================
 // MOBILE SIDEBAR
@@ -154,21 +153,21 @@ const hamburger = document.getElementById('hamburger');
 const overlay   = document.getElementById('overlay');
 
 function openSidebar()  {
-    sidebar.classList.add('open');
-    overlay.classList.add('visible');
+    sidebar.classList.add(cls('open'));
+    overlay.classList.add(cls('visible'));
     overlay.style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
 function closeSidebar() {
-    sidebar.classList.remove('open');
-    overlay.classList.remove('visible');
+    sidebar.classList.remove(cls('open'));
+    overlay.classList.remove(cls('visible'));
     setTimeout(() => { overlay.style.display = 'none'; }, 350);
     document.body.style.overflow = '';
 }
 
 hamburger.addEventListener('click', openSidebar);
 overlay.addEventListener('click', closeSidebar);
-document.querySelectorAll('.nav-link').forEach(link => {
+navLinks.forEach(link => {
     link.addEventListener('click', () => { if (window.innerWidth <= 768) closeSidebar(); });
 });
 
@@ -189,10 +188,10 @@ const iconMap = {
     'E-Commerce Platform': '<i class="fa-solid fa-cart-shopping"></i>'
 };
 
-document.querySelectorAll('.project-more').forEach(btn => {
+document.querySelectorAll(sel('project-more')).forEach(btn => {
     btn.addEventListener('click', function (e) {
         e.stopPropagation();
-        const card = this.closest('.project-card');
+        const card = this.closest(sel('project-card'));
 
         modalTitle.textContent = card.dataset.title;
         modalDesc.textContent  = card.dataset.desc;
@@ -205,12 +204,12 @@ document.querySelectorAll('.project-more').forEach(btn => {
             modalTech.appendChild(span);
         });
 
-        modal.classList.add('open');
+        modal.classList.add(cls('open'));
         document.body.style.overflow = 'hidden';
     });
 });
 
-function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+function closeModal() { modal.classList.remove(cls('open')); document.body.style.overflow = ''; }
 modalClose.addEventListener('click', closeModal);
 modalBdrop.addEventListener('click', closeModal);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
@@ -220,17 +219,30 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 // ================================================
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    contactForm.addEventListener('submit', function (e) {
         const name    = document.getElementById('name').value.trim();
         const email   = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
         const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!name)                { showAlert('Please enter your name.', 'error'); return; }
-        if (!emailRx.test(email)) { showAlert('Please enter a valid email.', 'error'); return; }
-        if (message.length < 10)  { showAlert('Message must be at least 10 characters.', 'error'); return; }
-        showAlert("Message sent! I'll get back to you soon.", 'success');
-        contactForm.reset();
+
+        if (!name) {
+            e.preventDefault();
+            showAlert('Please enter your name.', 'error');
+            return;
+        }
+        if (!emailRx.test(email)) {
+            e.preventDefault();
+            showAlert('Please enter a valid email.', 'error');
+            return;
+        }
+        if (message.length < 10) {
+            e.preventDefault();
+            showAlert('Message must be at least 10 characters.', 'error');
+            return;
+        }
+        // Valid — let the browser submit the form to FormSubmit.
+        // This only works once the site is hosted (not opened as a
+        // local file), because FormSubmit needs a real http/https URL.
     });
 }
 
@@ -263,8 +275,10 @@ scrollBtn.addEventListener('click', () => {
 
 // ================================================
 // CANVAS LIGHT EFFECT
+// Each page is permanently one theme now, so the light intensity target
+// is fixed per page instead of toggled at runtime.
 // ================================================
-let lightIntensity = isOn ? 1 : 0;   // start at correct value
+let lightIntensity = IS_DARK ? 1 : 0.14;
 let flickerVal     = 1;
 let flickerTarget  = 1;
 
@@ -280,10 +294,10 @@ window.addEventListener('resize', resize);
 
 // Bell tip position (centre-bottom of the rim)
 function getBellTip() {
-    const rim = document.querySelector('.bell-rim');
+    const rim = document.querySelector(sel('bell-rim'));
     if (!rim) return { x: canvas.width / 2, y: canvas.height * 0.42 };
     const r = rim.getBoundingClientRect();
-    return { x: r.left + r.width / 2, y: r.bottom - 4 };
+    return { x: r.left + r.width / 1.6, y: r.bottom - 4 };
 }
 
 function drawLight(tip, intensity) {
@@ -308,22 +322,22 @@ function drawLight(tip, intensity) {
     ctx.clip();
 
     const coneGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, coneLen);
-    coneGrad.addColorStop(0.00, `rgba(255,240,180,${0.55 * intensity})`);
-    coneGrad.addColorStop(0.08, `rgba(255,215,100,${0.45 * intensity})`);
-    coneGrad.addColorStop(0.22, `rgba(255,185,50,${0.30 * intensity})`);
-    coneGrad.addColorStop(0.45, `rgba(255,155,20,${0.14 * intensity})`);
-    coneGrad.addColorStop(0.70, `rgba(255,120,0,${0.05 * intensity})`);
-    coneGrad.addColorStop(1.00, `rgba(200,80,0,0)`);
+    coneGrad.addColorStop(0.00, `rgba(244,232,255,${0.55 * intensity})`);
+    coneGrad.addColorStop(0.08, `rgba(215,166,255,${0.45 * intensity})`);
+    coneGrad.addColorStop(0.22, `rgba(174,82,255,${0.30 * intensity})`);
+    coneGrad.addColorStop(0.45, `rgba(122,47,255,${0.14 * intensity})`);
+    coneGrad.addColorStop(0.70, `rgba(91,39,224,${0.05 * intensity})`);
+    coneGrad.addColorStop(1.00, `rgba(65,25,180,0)`);
     ctx.fillStyle = coneGrad;
     ctx.fillRect(0, 0, W, H);
     ctx.restore();
 
     // Halo
     const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, 55);
-    halo.addColorStop(0,    `rgba(255,255,240,${0.55 * intensity})`);
-    halo.addColorStop(0.15, `rgba(255,230,140,${0.40 * intensity})`);
-    halo.addColorStop(0.4,  `rgba(255,190,60,${0.18 * intensity})`);
-    halo.addColorStop(1,    `rgba(255,150,0,0)`);
+    halo.addColorStop(0,    `rgba(255,246,255,${0.55 * intensity})`);
+    halo.addColorStop(0.15, `rgba(226,178,255,${0.40 * intensity})`);
+    halo.addColorStop(0.4,  `rgba(172,79,255,${0.18 * intensity})`);
+    halo.addColorStop(1,    `rgba(111,47,255,0)`);
     ctx.beginPath();
     ctx.arc(cx, cy, 55, 0, Math.PI * 2);
     ctx.fillStyle = halo;
@@ -331,18 +345,18 @@ function drawLight(tip, intensity) {
 
     // Ambient
     const ambientGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, W * 0.9);
-    ambientGrad.addColorStop(0,    `rgba(255,180,50,${0.06 * intensity})`);
-    ambientGrad.addColorStop(0.3,  `rgba(255,130,20,${0.03 * intensity})`);
-    ambientGrad.addColorStop(0.65, `rgba(180,80,0,${0.015 * intensity})`);
-    ambientGrad.addColorStop(1,    `rgba(100,40,0,0)`);
+    ambientGrad.addColorStop(0,    `rgba(176,78,255,${0.06 * intensity})`);
+    ambientGrad.addColorStop(0.3,  `rgba(118,57,255,${0.03 * intensity})`);
+    ambientGrad.addColorStop(0.65, `rgba(75,44,215,${0.015 * intensity})`);
+    ambientGrad.addColorStop(1,    `rgba(48,24,155,0)`);
     ctx.fillStyle = ambientGrad;
     ctx.fillRect(0, 0, W, H);
 
     // Ceiling
     const ceilGrad = ctx.createRadialGradient(cx, 0, 0, cx, 0, 160);
-    ceilGrad.addColorStop(0,   `rgba(255,200,80,${0.10 * intensity})`);
-    ceilGrad.addColorStop(0.4, `rgba(255,160,30,${0.04 * intensity})`);
-    ceilGrad.addColorStop(1,   `rgba(200,100,0,0)`);
+    ceilGrad.addColorStop(0,   `rgba(201,137,255,${0.10 * intensity})`);
+    ceilGrad.addColorStop(0.4, `rgba(133,68,255,${0.04 * intensity})`);
+    ceilGrad.addColorStop(1,   `rgba(75,33,190,0)`);
     ctx.fillStyle = ceilGrad;
     ctx.fillRect(0, 0, W, H * 0.35);
 
@@ -358,9 +372,9 @@ function drawLight(tip, intensity) {
         const ey = cy + Math.sin(rayAngle) * rayLen;
 
         const rayGrad = ctx.createLinearGradient(cx, cy, ex, ey);
-        rayGrad.addColorStop(0,   `rgba(255,220,120,${0.06 * intensity})`);
-        rayGrad.addColorStop(0.4, `rgba(255,180,60,${0.02 * intensity})`);
-        rayGrad.addColorStop(1,   `rgba(255,140,0,0)`);
+        rayGrad.addColorStop(0,   `rgba(221,170,255,${0.06 * intensity})`);
+        rayGrad.addColorStop(0.4, `rgba(160,76,255,${0.02 * intensity})`);
+        rayGrad.addColorStop(1,   `rgba(111,45,255,0)`);
 
         ctx.beginPath();
         ctx.moveTo(cx, cy);
@@ -378,10 +392,10 @@ function updateFlicker() {
 }
 
 function render() {
-    const target = isOn ? 1 : 0;
+    const target = IS_DARK ? 1 : 0.14;
     lightIntensity += (target - lightIntensity) * 0.055;
 
-    if (isOn && lightIntensity > 0.5) {
+    if (IS_DARK && lightIntensity > 0.5) {
         updateFlicker();
     } else {
         flickerVal = 1;
@@ -398,9 +412,11 @@ function render() {
 render();
 
 
-//  DNA background effect script 
-
-
+// ================================================
+// DNA BACKGROUND EFFECT — GOLD THEME
+// Dark theme  -> bright/warm gold tones
+// Light theme -> deeper gold/bronze tones (so it stays visible on white)
+// ================================================
 (function () {
   const canvas = document.getElementById('dna-bg-canvas');
   if (!canvas) return;
@@ -414,7 +430,15 @@ render();
   resize();
   window.addEventListener('resize', resize);
 
-  const DNA_COLORS = ['rgba(232,180,184,', 'rgba(201,169,110,', 'rgba(139,94,106,', 'rgba(242,221,213,'];
+  // Gold palette — swap between dark/light automatically
+  const DNA_COLORS = IS_DARK
+    ? ['rgba(255,215,120,', 'rgba(212,175,55,', 'rgba(255,193,7,', 'rgba(255,230,160,']
+    : ['rgba(180,140,20,', 'rgba(150,110,10,', 'rgba(200,160,40,', 'rgba(120,90,10,'];
+
+  const HELIX_COLOR_A = IS_DARK ? 'rgba(255,215,120,' : 'rgba(150,110,10,';
+  const HELIX_COLOR_B = IS_DARK ? 'rgba(212,175,55,'  : 'rgba(180,140,20,';
+  const WEB_LINE_COLOR = IS_DARK ? 'rgba(255,215,120,' : 'rgba(150,110,10,';
+  const WEB_LINE_ALPHA = IS_DARK ? 0.10 : 0.12;
 
   class DnaParticle {
     constructor() { this.reset(); }
@@ -458,7 +482,7 @@ render();
     draw(t) {
       const { x, y } = this.getPos(t);
       const alpha = 0.5 + 0.3 * Math.abs(Math.sin(this.i / this.total * Math.PI * 4 + t));
-      const color = this.side === 0 ? `rgba(201,169,110,${alpha})` : `rgba(232,180,184,${alpha})`;
+      const color = this.side === 0 ? `${HELIX_COLOR_A}${alpha})` : `${HELIX_COLOR_B}${alpha})`;
       ctx.beginPath();
       ctx.arc(x, y, 3, 0, Math.PI * 2);
       ctx.fillStyle = color;
@@ -486,7 +510,7 @@ render();
           ctx.beginPath();
           ctx.moveTo(dnaParticles[i].x, dnaParticles[i].y);
           ctx.lineTo(dnaParticles[j].x, dnaParticles[j].y);
-          ctx.strokeStyle = `rgba(201,169,110,${0.08 * (1 - d / 120)})`;
+          ctx.strokeStyle = `${WEB_LINE_COLOR}${WEB_LINE_ALPHA * (1 - d / 120)})`;
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
@@ -499,8 +523,8 @@ render();
     for (let i = 0; i < HELIX_COUNT; i += 3) {
       if (posA[i] && posB[i]) {
         const grad = ctx.createLinearGradient(posA[i].x, posA[i].y, posB[i].x, posB[i].y);
-        grad.addColorStop(0, 'rgba(201,169,110,.35)');
-        grad.addColorStop(1, 'rgba(232,180,184,.35)');
+        grad.addColorStop(0, `${HELIX_COLOR_A}.35)`);
+        grad.addColorStop(1, `${HELIX_COLOR_B}.35)`);
         ctx.beginPath();
         ctx.moveTo(posA[i].x, posA[i].y);
         ctx.lineTo(posB[i].x, posB[i].y);
@@ -514,13 +538,13 @@ render();
       ctx.beginPath();
       ctx.moveTo(posA[i - 1].x, posA[i - 1].y);
       ctx.lineTo(posA[i].x, posA[i].y);
-      ctx.strokeStyle = 'rgba(201,169,110,.25)';
+      ctx.strokeStyle = `${HELIX_COLOR_A}.25)`;
       ctx.lineWidth = 1.2;
       ctx.stroke();
       ctx.beginPath();
       ctx.moveTo(posB[i - 1].x, posB[i - 1].y);
       ctx.lineTo(posB[i].x, posB[i].y);
-      ctx.strokeStyle = 'rgba(232,180,184,.25)';
+      ctx.strokeStyle = `${HELIX_COLOR_B}.25)`;
       ctx.lineWidth = 1.2;
       ctx.stroke();
     }
