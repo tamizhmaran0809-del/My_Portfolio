@@ -176,6 +176,8 @@ hamburger.addEventListener('click', function (e) {
     }
 });
 
+overlay.addEventListener('click', closeSidebar);
+
 
 // ================================================
 // PROJECT MODAL
