@@ -165,11 +165,17 @@ function closeSidebar() {
     document.body.style.overflow = '';
 }
 
-hamburger.addEventListener('click', openSidebar);
-overlay.addEventListener('click', closeSidebar);
-navLinks.forEach(link => {
-    link.addEventListener('click', () => { if (window.innerWidth <= 768) closeSidebar(); });
+
+hamburger.addEventListener('click', function (e) {
+    e.stopPropagation();
+
+    if (sidebar.classList.contains(cls('open'))) {
+        closeSidebar();
+    } else {
+        openSidebar();
+    }
 });
+
 
 // ================================================
 // PROJECT MODAL
@@ -264,9 +270,11 @@ function showAlert(msg, type) {
 // SCROLL-TO-TOP BUTTON
 // ================================================
 const scrollBtn = document.getElementById('scrollTopBtn');
+const prefix = document.body.dataset.prefix || '';   
+const showClass = prefix ? `${prefix}-show` : 'show';
 
 window.addEventListener('scroll', () => {
-    scrollBtn.classList.toggle('show', window.scrollY > 300);
+    scrollBtn.classList.toggle(showClass, window.scrollY > 300);
 }, { passive: true });
 
 scrollBtn.addEventListener('click', () => {

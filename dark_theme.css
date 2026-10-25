@@ -3502,3 +3502,444 @@ body {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
 }
+
+
+/* =====================================================================
+   FINAL RESPONSIVE FIX  (keep this block at the very END of the file)
+   - Desktop (>1100px) is untouched: 100% same as before.
+   - Fixes: hero overflow / clipped text, scattered tech icons,
+     lamp position, hidden 6+ badge, sidebar sliver, stats overflow.
+===================================================================== */
+
+/* ---------- global safety: nothing may push the page sideways ---------- */
+html, body { max-width: 100%; overflow-x: hidden; }
+.dk-main-content { min-width: 0; }
+.dk-hero-section > * { min-width: 0; }
+.dk-hero-text h1,
+.dk-hero-desc { overflow-wrap: anywhere; }
+
+/* ---------- sidebar drawer: fully hidden when closed (no 16px sliver) ---------- */
+@media (max-width: 1024px) {
+    .dk-sidebar {
+        top: 0;
+        left: 0;
+        height: 100vh;
+        height: 100dvh;
+        border-radius: 0;
+        transform: translateX(calc(-100% - 40px));
+        box-shadow: none;
+    }
+    .dk-sidebar.dk-open {
+        transform: translateX(0);
+        box-shadow: 4px 0 30px rgba(0, 0, 0, .3);
+    }
+}
+
+/* ---------- About stats: were wider than the screen on tablet/phone ---------- */
+@media (max-width: 1024px) {
+    .dk-about-grid { grid-template-columns: minmax(0, 1fr); }
+    .dk-about-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-width: 0;
+        max-width: 100%;
+    }
+    .dk-about-stats .dk-stat-card { flex: 1 1 130px; min-width: 0; }
+}
+
+/* ---------- tablet (769 – 1100): keep 2 columns, but never overflow ---------- */
+@media (max-width: 1100px) {
+    .dk-hero-section {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+    .dk-hero-visual {
+        width: 100%;
+        max-width: 460px;
+        height: auto;
+        aspect-ratio: 1385 / 1136;
+        grid-column: 2;
+        grid-row: 1 / 3;
+    }
+}
+
+/* ---------- 6+ badge: stays visible, top-right (mirrors the hamburger) ---------- */
+@media (max-width: 1100px) {
+    .dk-hero-section > .dk-hero-badge {
+        display: block;
+        position: absolute !important;
+        top: 16px;
+        right: 16px;
+        bottom: auto;
+        left: auto;
+        margin: 0;
+        z-index: 20;
+        order: 0;
+        align-self: auto;
+    }
+    .dk-hero-badge .dk-badge-ring { width: 96px; height: 96px; padding: 6px; }
+    .dk-hero-badge .dk-badge-inner { width: 100%; height: 100%; }
+    .dk-hero-badge .dk-badge-num { font-size: 1.45rem; }
+    .dk-hero-badge .dk-badge-label { font-size: .5rem; line-height: 1.15; }
+}
+
+/* =====================================================================
+   PHONES + SMALL TABLETS  (<= 768px)  — single-column hero
+===================================================================== */
+@media (max-width: 768px) {
+
+    .dk-hero-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: auto;
+        min-height: 0;
+        padding: 120px 16px 40px;
+        gap: 22px;
+        text-align: center;
+    }
+
+    /* hanging lamp: back to absolute (centered, top), just smaller */
+    .dk-scene {
+        position: absolute;
+        inset: 0;
+        transform: none;
+        margin: 0;
+    }
+    .dk-bell-wrap {
+        scale: .72;
+        transform-origin: top center;
+    }
+
+    /* text block */
+    .dk-hero-text {
+        width: 100%;
+        max-width: 100%;
+        padding-top: 0;
+        margin: 0;
+    }
+    .dk-hero-eyebrow { font-size: .85rem; }
+    .dk-hero-text h1 {
+        font-size: clamp(2.1rem, 10.5vw, 3.4rem);
+        line-height: 1.02;
+        margin-bottom: 14px;
+    }
+    .dk-typing-wrapper {
+        max-width: 100%;
+        justify-content: center;
+        font-size: clamp(.8rem, 3.9vw, 1rem);
+        padding: 7px 12px;
+        gap: 8px;
+        white-space: normal;
+    }
+    .dk-hero-desc {
+        max-width: 100%;
+        margin: 0 auto 20px;
+        font-size: clamp(.84rem, 3.7vw, .95rem);
+    }
+    .dk-hero-btns {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+    }
+    .dk-hero-btns .dk-btn-primary,
+    .dk-hero-btns .dk-btn-secondary {
+        flex: 1 1 150px;
+        width: auto;
+        max-width: 240px;
+        justify-content: center;
+        padding: 12px 16px;
+    }
+
+    /* laptop + icons: ONE box that scales with the screen width */
+    .dk-hero-visual {
+        grid-column: auto;
+        grid-row: auto;
+        order: 2;
+        display: block;
+        position: relative;
+        width: min(100%, 420px);
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1385 / 1136;
+        margin: 0 auto;
+    }
+    .dk-reference-laptop {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        transform: none;
+    }
+    .dk-reference-laptop::before { width: 90%; height: 80%; }
+    .dk-reference-laptop::after  { display: none; }
+    .dk-reference-laptop img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* icons: same 3×2 cluster as desktop, positioned in % of the box */
+    .dk-floating-tech-icons { position: absolute; inset: 0; }
+    .dk-tech-icon {
+        width: 11%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        min-width: 28px;
+        border-radius: 22%;
+        right: auto;
+        bottom: auto;
+    }
+    .dk-tech-icon i { font-size: clamp(14px, 4vw, 20px); }
+
+    .dk-python-icon { left: 23%; top: 37%; }
+    .dk-django-icon { left: 36%; top: 35%; }
+    .dk-php-icon    { left: 49%; top: 33%; }
+    .dk-html-icon   { left: 22%; top: 50%; }
+    .dk-css-icon    { left: 35%; top: 48%; }
+    .dk-js-icon     { left: 48%; top: 46%; }
+
+    /* sparkle dots must not stick out of the box */
+    .dk-tech-sparkles { overflow: hidden; }
+
+}
+
+/* ---------- small phones ---------- */
+@media (max-width: 480px) {
+    .dk-hero-section { padding-top: 112px; gap: 18px; }
+    .dk-hero-badge .dk-badge-ring { width: 84px; height: 84px; }
+    .dk-hero-badge .dk-badge-num  { font-size: 1.25rem; }
+    .dk-hero-badge .dk-badge-label { font-size: .46rem; }
+}
+
+@media (max-width: 360px) {
+    .dk-hero-section { padding: 106px 12px 32px; }
+    .dk-hero-btns .dk-btn-primary,
+    .dk-hero-btns .dk-btn-secondary { flex-basis: 100%; max-width: 280px; }
+}
+
+/* ---------- landscape phones ---------- */
+@media (max-height: 480px) and (orientation: landscape) and (max-width: 900px) {
+    .dk-hero-section { padding-top: 90px; }
+    .dk-hero-visual { width: min(100%, 300px); }
+}
+
+
+/* =====================================================================
+   FINAL RESPONSIVE FIX  (keep this block at the very END of the file)
+===================================================================== */
+
+/* ---------- global safety ---------- */
+html, body { max-width: 100%; overflow-x: hidden; }
+.dk-main-content { min-width: 0; }
+.dk-hero-section > * { min-width: 0; }
+.dk-hero-text h1,
+.dk-hero-desc { overflow-wrap: anywhere; }
+
+/* ---------- sidebar drawer: fully hidden when closed ---------- */
+@media (max-width: 1024px) {
+    .dk-sidebar {
+        top: 0;
+        left: 0;
+        height: 100vh;
+        height: 100dvh;
+        border-radius: 0;
+        transform: translateX(calc(-100% - 40px));
+        box-shadow: none;
+    }
+    .dk-sidebar.dk-open {
+        transform: translateX(0);
+        box-shadow: 4px 0 30px rgba(0, 0, 0, .3);
+    }
+}
+
+/* ---------- About stats overflow ---------- */
+@media (max-width: 1024px) {
+    .dk-about-grid { grid-template-columns: minmax(0, 1fr); }
+    .dk-about-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-width: 0;
+        max-width: 100%;
+    }
+    .dk-about-stats .dk-stat-card { flex: 1 1 130px; min-width: 0; }
+}
+
+/* ---------- tablet ---------- */
+@media (max-width: 1100px) {
+    .dk-hero-section {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+    .dk-hero-visual {
+        width: 100%;
+        max-width: 460px;
+        height: auto;
+        aspect-ratio: 1385 / 1136;
+        grid-column: 2;
+        grid-row: 1 / 3;
+    }
+}
+
+/* ---------- 6+ badge visible, top-right ---------- */
+@media (max-width: 1100px) {
+    .dk-hero-section > .dk-hero-badge {
+        display: block;
+        position: absolute !important;
+        top: 16px;
+        right: 16px;
+        bottom: auto;
+        left: auto;
+        margin: 0;
+        z-index: 20;
+        order: 0;
+        align-self: auto;
+    }
+    .dk-hero-badge .dk-badge-ring { width: 96px; height: 96px; padding: 6px; }
+    .dk-hero-badge .dk-badge-inner { width: 100%; height: 100%; }
+    .dk-hero-badge .dk-badge-num { font-size: 1.45rem; }
+    .dk-hero-badge .dk-badge-label { font-size: .5rem; line-height: 1.15; }
+}
+
+/* =====================================================================
+   PHONES + SMALL TABLETS (<= 768px)
+===================================================================== */
+@media (max-width: 768px) {
+
+    .dk-hero-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: auto;
+        min-height: 0;
+        padding: 120px 16px 40px;
+        gap: 22px;
+        text-align: center;
+    }
+
+    .dk-scene {
+        position: absolute;
+        inset: 0;
+        transform: none;
+        margin: 0;
+    }
+    .dk-bell-wrap {
+        scale: .72;
+        transform-origin: top center;
+    }
+
+    .dk-hero-text {
+        width: 100%;
+        max-width: 100%;
+        padding-top: 0;
+        margin: 0;
+    }
+    .dk-hero-eyebrow { font-size: .85rem; }
+    .dk-hero-text h1 {
+        font-size: clamp(2.1rem, 10.5vw, 3.4rem);
+        line-height: 1.02;
+        margin-bottom: 14px;
+    }
+    .dk-typing-wrapper {
+        max-width: 100%;
+        justify-content: center;
+        font-size: clamp(.8rem, 3.9vw, 1rem);
+        padding: 7px 12px;
+        gap: 8px;
+        white-space: normal;
+    }
+    .dk-hero-desc {
+        max-width: 100%;
+        margin: 0 auto 20px;
+        font-size: clamp(.84rem, 3.7vw, .95rem);
+    }
+    .dk-hero-btns {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+    }
+    .dk-hero-btns .dk-btn-primary,
+    .dk-hero-btns .dk-btn-secondary {
+        flex: 1 1 150px;
+        width: auto;
+        max-width: 240px;
+        justify-content: center;
+        padding: 12px 16px;
+    }
+
+    .dk-hero-visual {
+        grid-column: auto;
+        grid-row: auto;
+        order: 2;
+        display: block;
+        position: relative;
+        width: min(100%, 420px);
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1385 / 1136;
+        margin: 0 auto;
+    }
+    .dk-reference-laptop {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        transform: none;
+    }
+    .dk-reference-laptop::before { width: 90%; height: 80%; }
+    .dk-reference-laptop::after  { display: none; }
+    .dk-reference-laptop img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .dk-floating-tech-icons { position: absolute; inset: 0; }
+    .dk-tech-icon {
+        width: 11%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        min-width: 28px;
+        border-radius: 22%;
+        right: auto;
+        bottom: auto;
+    }
+    .dk-tech-icon i { font-size: clamp(14px, 4vw, 20px); }
+
+    .dk-python-icon { left: 23%; top: 37%; }
+    .dk-django-icon { left: 36%; top: 35%; }
+    .dk-php-icon    { left: 49%; top: 33%; }
+    .dk-html-icon   { left: 22%; top: 50%; }
+    .dk-css-icon    { left: 35%; top: 48%; }
+    .dk-js-icon     { left: 48%; top: 46%; }
+
+    .dk-tech-sparkles { overflow: hidden; }
+}
+
+/* ---------- small phones ---------- */
+@media (max-width: 480px) {
+    .dk-hero-section { padding-top: 112px; gap: 18px; }
+    .dk-hero-badge .dk-badge-ring { width: 84px; height: 84px; }
+    .dk-hero-badge .dk-badge-num  { font-size: 1.25rem; }
+    .dk-hero-badge .dk-badge-label { font-size: .46rem; }
+}
+
+@media (max-width: 360px) {
+    .dk-hero-section { padding: 106px 12px 32px; }
+    .dk-hero-btns .dk-btn-primary,
+    .dk-hero-btns .dk-btn-secondary { flex-basis: 100%; max-width: 280px; }
+}
+
+/* ---------- landscape phones ---------- */
+@media (max-height: 480px) and (orientation: landscape) and (max-width: 900px) {
+    .dk-hero-section { padding-top: 90px; }
+    .dk-hero-visual { width: min(100%, 300px); }
+}
